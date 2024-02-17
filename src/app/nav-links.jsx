@@ -3,19 +3,30 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-    { name: "Home", href: "/ui/dashboard" },
     {
-        name: "events",
-        href: "/ui/dashboard/events"
+        name: "Home",
+        href: "/"
+    },
+    {
+        name: "Events",
+        href: "/upcoming"
+    },
+    {
+        name: "About",
+        href: "/about"
     }
 ];
 
-let link = links[0];
 export default function NavLinks() {
+    const currentPath = usePathname();  
+    
     return (
-        <>
-            {link.name}
-            this is the nav links area
-        </>
+        <nav className="flex border h-[75%] justify-center border-black">{
+            links.map((link, index) => (
+                <Link key={index} href={link.href}>
+                    <div className={`flex flex-row m-1 text-emerald-600 drop-shadow-lg  ${currentPath === link.href ? "active" : ""}`}>{link.name}</div>
+                </Link>
+            ))}
+        </nav>
     );
 }

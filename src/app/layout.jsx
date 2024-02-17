@@ -1,7 +1,9 @@
 import { Inter } from "next/font/google";
+import NavBanner from "./NavBanner";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const currentDate = new Date();
 
 export const metadata = {
     title: "TuTuft, LLC.",
@@ -9,9 +11,21 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+    let year = currentDate.getFullYear();
+
     return (
         <html lang="en">
-            <body className={inter.className}>{children}</body>
+            <body className={`h-full ${inter.className}`}>
+                <div className="w-full">
+                    <NavBanner />
+                </div>
+                This is the main container
+                {children}
+                
+                <footer className="mt-[.5%] text-center border border-red-800 text-[150%]">
+                    copyright {year}
+                </footer>
+            </body>
         </html>
     );
 }
