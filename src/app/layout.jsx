@@ -20,10 +20,13 @@ export default function RootLayout({ children }) {
                     <NavBanner />
                 </div>
                 This is the main container
-                {children}
+                <div>
+                    this holds the children pages
+                    {children}
+                </div>
                 
                 <footer className="mt-[.5%] text-center border border-red-800 text-[150%]">
-                    copyright {year}
+                    copyright &copy; {year}
                 </footer>
             </body>
         </html>
