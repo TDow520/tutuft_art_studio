@@ -6,18 +6,18 @@ import { useEffect, useState } from "react";
 export default function Page() {
     // Array of month names
     const months = [
-        "January",
-        "Febraury",
-        "March",
-        "April",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
         "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
     ];
 
     // Get current date
