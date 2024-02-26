@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
                     <NavBanner />
                 </div>
                 This is the main container
-                <div className="h-[95vh]">
+                <div className="h-[95%]">
                     this holds the children pages
                     {children}
                 </div>

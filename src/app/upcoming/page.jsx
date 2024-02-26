@@ -113,11 +113,54 @@ export default function Page() {
         return days;
     };
 
+    // a dictionary to hold the events for the month
+    const events = [
+        {
+            date: "2024-03-02",
+            event: "Rug Tufting"
+        },
+        {
+            date: "2024-03-09",
+            event: "Paint 'n' Sip"
+        },
+        {
+            date: "2024-03-16",
+            event: "Rug Tufting"
+        },
+        {
+            date: "2024-03-23",
+            event: "Rug Tufting"
+        }
+    ];
+
+    // hold the events of the month in order of date
+    const eventsByDate = {};
+
+    // function organize events by day
+    const organizeEvents = (events) => {
+        events.sort((a, b) => new Date(a.date - b.date));
+        events.forEach(activity => {
+            let date = activity.date;
+            if (!eventsByDate[date]) {
+                eventsByDate[date] = [];
+            }
+            eventsByDate[date].push(activity);
+        });
+    };
+
+    // call the function to organize the events
+    organizeEvents(events);
+    
+    // determines if there is an event for a certain day
+    const hasEvent = (day) => {
+        return eventsByDate[day] && eventsByDate[day].length > 0;
+    };
+
     return (
-        <div className="flex h-[89.36vh]">
-            <div className="border border-double border-blue-800 mx-[12%] w-[75vw]">
+        <div className="flex">
+            <div className="border border-double border-blue-800 mx-auto w-[75%] h-[75%]">
                 {/* Calendar display */}
-                <div className="flex border border-violet-700 sm:w-[80vw] md:w-[100%] sm:h-[20.5vh] md:h-[27.5vh]">
+                <div className="flex border border-violet-700 sm:w-[80vw] md:w-[100%] sm:h-[20.5vh] md:h-[18.5vh]">
                     <Image
                         src="/heart_tree.jpeg"
                         alt=""
@@ -130,7 +173,7 @@ export default function Page() {
                     <tbody className="flex flex-col justify-center items-center">
                         {/* Month navigation */}
                         <tr className="flex justify-evenly border border-dashed border-white">
-                            <td className="bg-black text-white md:pt-[1.5vh] md:pl-[.65vw] md:w-[25%]">
+                            <td className="bg-black text-white md:pt-[1.5vh] md:pl-[.65vw] w-[12.5vw]">
                                 <button
                                     onClick={handlePrevMonth}
                                     className="flex w-[100%] border border-dashed border-red-700 md:text-[4vh] sm:text-sm"
@@ -139,10 +182,10 @@ export default function Page() {
                                 </button>
                             </td>
                             {/* Display current month */}
-                            <td className="bg-red-600 border border-black sm:h-[17vh] md:text-[10vh] sm:text-sm  text-center pt-[5vh] font-bold w-[50%]">
+                            <td className="bg-red-600 border border-black sm:h-[17vh] md:text-[10vh] sm:text-sm  text-center pt-[5vh] font-bold w-[50vw]">
                                 {currentMonth}
                             </td>
-                            <td className=" bg-black text-white md:pt-[1.5vh] md:pl-[.65vw] md:w-[025%]">
+                            <td className=" bg-black text-white md:pt-[1.5vh] md:pl-[.65vw] w-[12.5vw]">
                                 <button
                                     onClick={handleNextMonth}
                                     className="flex w-[100%] border border-dashed border-red-700 md:text-[4vh] sm:text-sm"
@@ -154,12 +197,12 @@ export default function Page() {
                         {/* Days of the week */}
                         <tr className="flex flex-row w-[100%] border border-dashed border-green-400">
                             {daysOfWeek.map((day, index) => (
-                                <th
-                                    className="border border-double border-purple-700 py-[2%] w-[14.29%] bg-black text-white"
+                                <td
+                                    className="border border-double border-purple-700 py-[2%] w-[14.29%] bg-yellow-500 text-white"
                                     key={index}
                                 >
                                     {day}
-                                </th>
+                                </td>
                             ))}
                         </tr>
                         {/* Days of the month make each row only to have 7 days*/}
@@ -167,14 +210,23 @@ export default function Page() {
                         {displayDays().map((week, index) => (
                             <tr
                                 key={index}
-                                className="flex flex-row w-[100%] h-[] border border-dashed border-green-400"
+                                className="flex flex-row w-[100%]  border border-dashed border-green-400"
                             >
                                 {week.map((day, index) => (
                                     <td
                                         key={index}
-                                        className="border border-double border-purple-700 py-[2%] w-[14.29%] bg-black text-white"
+                                        className=" flex flex-col border border-double border-purple-700 py-[2%] w-[14.29%] bg-green-400 text-white"
                                     >
                                         {day}
+                                        {/* Check if there are events for this day */}
+                                        
+                                        <Image
+                                            src="/rug_tuft.jpeg"
+                                            alt=""
+                                            layout="responsive"
+                                            width={100}
+                                            height={100}
+                                        />
                                     </td>
                                 ))}
                             </tr>
