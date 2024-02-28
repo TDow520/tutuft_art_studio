@@ -24,9 +24,9 @@ export default function Page() {
     const date = new Date();
     const [currentMonthIndex, setCurrentMonthIndex] = useState(date.getMonth());
     const [currentYear, setCurrentYear] = useState(date.getFullYear());
-    const [currentMonth, setCurrentMonth] = useState(
-        `${months[currentMonthIndex]} ${currentYear}`
-    );
+    const [currentMonth, setCurrentMonth] = useState(`${months[currentMonthIndex]} ${currentYear}`);
+    const [popUpVisible, setPopUpVisible] = useState(false);
+
 
     // Handler for moving to previous month
     const handlePrevMonth = () => {
@@ -40,11 +40,11 @@ export default function Page() {
 
     // Handler for moving to next month
     const handleNextMonth = () => {
-        setCurrentMonthIndex((prevMonth) =>
-            prevMonth === 11 ? 0 : prevMonth + 1
+        setCurrentMonthIndex((nextMonth) =>
+            nextMonth === 11 ? 0 : nextMonth + 1
         );
         if (currentMonthIndex === 11) {
-            setCurrentYear((prevYear) => prevYear + 1);
+            setCurrentYear((nextYear) => nextYear + 1);
         }
     };
 
@@ -102,6 +102,7 @@ export default function Page() {
     const displayDays = () => {
         let days = [];
         let week = [];
+        // adds the images for the event that are being held that day
         daysArray.forEach((day, index) => {
             if (index % 7 === 0 && index !== 0) {
                 days.push(week);
@@ -116,45 +117,89 @@ export default function Page() {
     // a dictionary to hold the events for the month
     const events = [
         {
-            date: "2024-03-02",
+            date: "2024-2-2",
             event: "Rug Tufting"
         },
         {
-            date: "2024-03-09",
+            date: "2024-2-9",
             event: "Paint 'n' Sip"
         },
         {
-            date: "2024-03-16",
+            date: "2024-2-16",
             event: "Rug Tufting"
         },
         {
-            date: "2024-03-23",
+            date: "2024-2-14",
             event: "Rug Tufting"
+        },
+        {
+            date: "2024-3-14",
+            event: "Paint 'n' Sip"
         }
     ];
 
-    // hold the events of the month in order of date
-    const eventsByDate = {};
+    // for each event on a certain date display the images associated with the event
+    const dispalyEventImg = (date) => {
+        // this holds all the images for the events on that day
+        const images = [];
 
-    // function organize events by day
-    const organizeEvents = (events) => {
-        events.sort((a, b) => new Date(a.date - b.date));
-        events.forEach(activity => {
-            let date = activity.date;
-            if (!eventsByDate[date]) {
-                eventsByDate[date] = [];
+        events.forEach((event, index) => {
+            // Modify the date format to ensure consistency with the events data yyyy-m-d
+            // const formDate = `${currentYear}-${currentMonthIndex + 1}-${date}`;
+            // console.log(date);
+            // console.log(formDate);
+            if (event.date === date) {
+                switch (event.event) {
+                    case "Rug Tufting":
+                        images.push(
+                            <div className="flex flex-col items-center mt-[5%]">
+                                <Image
+                                    key={`${date} - ${index}`}
+                                    src="/rug_tuft.jpeg"
+                                    alt=""
+                                    width={150}
+                                    height={150}
+                                />
+                                <p>Rug Tufting</p>
+                            </div>
+                        );
+                        break;
+                    case "Paint 'n' Sip":
+                        images.push(
+                            <div className="flex flex-col items-center mt-[5%]">
+                                <Image
+                                    key={`${date} - ${index}`}
+                                    src="/paint-n-sip.jpeg"
+                                    alt=""
+                                    width={150}
+                                    height={150}
+                                />
+                                <p className="underline">Paint 'n' Sip</p>
+                            </div>
+                        );
+                        break;
+                    default:
+                        return null;
+                        break;
+                }
             }
-            eventsByDate[date].push(activity);
         });
+        // console.log(date);
+        // console.log(images);
+        return images;
     };
 
-    // call the function to organize the events
-    organizeEvents(events);
-    
-    // determines if there is an event for a certain day
-    const hasEvent = (day) => {
-        return eventsByDate[day] && eventsByDate[day].length > 0;
+    // create a function that will show a pop up window once an image is clicked
+    const showModal = () => {
+        setPopUpVisible(true);
     };
+
+    // create a function that will close the pop up window once the close button is clicked
+    const closeModal = () => {
+        setPopUpVisible(false);
+    };
+
+
 
     return (
         <div className="flex">
@@ -214,19 +259,21 @@ export default function Page() {
                             >
                                 {week.map((day, index) => (
                                     <td
+                                        //if the day is a saturady or sunday change the font color to red
+                                        style={
+                                            daysOfWeek[index] === "Sat" ||
+                                            daysOfWeek[index] === "Sun"
+                                                ? { color: "red" }
+                                                : { color: "black" }
+                                        }
                                         key={index}
-                                        className=" flex flex-col border border-double border-purple-700 py-[2%] w-[14.29%] bg-green-400 text-white"
+                                        className="  border border-double border-purple-700  pb-[5%] w-[14.29%] bg-green-500 text-white "
                                     >
-                                        {day}
-                                        {/* Check if there are events for this day */}
-                                        
-                                        <Image
-                                            src="/rug_tuft.jpeg"
-                                            alt=""
-                                            layout="responsive"
-                                            width={100}
-                                            height={100}
-                                        />
+                                        {/* diplay the day and te image associated with the event for that date */}
+                                        <div className="bg-gray-200 w-[100%]">
+                                            {day}
+                                        </div>
+                                        {dispalyEventImg(`${currentYear}-${currentMonthIndex + 1}-${day}`)}
                                     </td>
                                 ))}
                             </tr>
