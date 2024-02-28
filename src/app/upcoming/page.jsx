@@ -26,7 +26,7 @@ export default function Page() {
     const [currentYear, setCurrentYear] = useState(date.getFullYear());
     const [currentMonth, setCurrentMonth] = useState(`${months[currentMonthIndex]} ${currentYear}`);
     const [popUpVisible, setPopUpVisible] = useState(false);
-
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     // Handler for moving to previous month
     const handlePrevMonth = () => {
@@ -118,23 +118,28 @@ export default function Page() {
     const events = [
         {
             date: "2024-2-2",
-            event: "Rug Tufting"
+            title: "Rug Tufting",
+            slots: 20
         },
         {
             date: "2024-2-9",
-            event: "Paint 'n' Sip"
+            title: "Paint 'n' Sip",
+            slots: 20
         },
         {
             date: "2024-2-16",
-            event: "Rug Tufting"
+            title: "Rug Tufting",
+            slots: 20
         },
         {
             date: "2024-2-14",
-            event: "Rug Tufting"
+            title: "Rug Tufting",
+            slots: 20
         },
         {
             date: "2024-3-14",
-            event: "Paint 'n' Sip"
+            title: "Paint 'n' Sip",
+            slots: 20
         }
     ];
 
@@ -149,30 +154,35 @@ export default function Page() {
             // console.log(date);
             // console.log(formDate);
             if (event.date === date) {
-                switch (event.event) {
+                // console.log(event.title);
+                switch (event.title) {
                     case "Rug Tufting":
                         images.push(
-                            <div className="flex flex-col items-center mt-[5%]">
+                            <div className="flex flex-col items-center mt-[5%] cursor-pointer">
                                 <Image
                                     key={`${date} - ${index}`}
                                     src="/rug_tuft.jpeg"
                                     alt=""
                                     width={150}
                                     height={150}
+                                    onClick={() => showModal(event)}
+                                    className=" hover:drop-shadow-2xl rounded-md"
                                 />
-                                <p>Rug Tufting</p>
+                                <p className="underline">Rug Tufting</p>
                             </div>
                         );
                         break;
                     case "Paint 'n' Sip":
                         images.push(
-                            <div className="flex flex-col items-center mt-[5%]">
+                            <div className="flex flex-col items-center mt-[5%] cursor-pointer">
                                 <Image
                                     key={`${date} - ${index}`}
                                     src="/paint-n-sip.jpeg"
                                     alt=""
                                     width={150}
                                     height={150}
+                                    onClick={() => showModal(event)}
+                                    className=" hover:drop-shadow-2xl rounded-md"
                                 />
                                 <p className="underline">Paint 'n' Sip</p>
                             </div>
@@ -190,16 +200,52 @@ export default function Page() {
     };
 
     // create a function that will show a pop up window once an image is clicked
-    const showModal = () => {
+    const showModal = (event) => {
+        setSelectedEvent(event);
+        // console.log("Clicked");
+        // console.log(`THis is the event: ${event.title}`);
         setPopUpVisible(true);
+        // console.log("clicked");
     };
 
     // create a function that will close the pop up window once the close button is clicked
     const closeModal = () => {
+        setSelectedEvent(null);
         setPopUpVisible(false);
     };
 
+    // fill out the popup modal with data from the event information
+    const popUp = (event) => {
+        // console.log(`event: ${event.title}`);
+        if (popUpVisible) {
+            // get the event that is being clicked on
 
+            return (
+                <div className="fixed top-0 left-0 w-full h-full flex bg-opacity-1 items-center justify-center overflow-y-auto">
+                    <div className="bg-emerald-200  p-4 max-w-xl overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl ">
+                        {dispalyEventImg(event.date)}
+                        <h3>Time: 6:00pm - 8:00pm</h3>
+                        <p>
+                            Location: 3447 Mcgehee Rd Suite N <br></br>
+                            MONTGOMERY, Alabama 36111
+                        </p>
+                        <br />
+                        <p>Cost: $25</p>
+                        <p>Supplies: Provided</p>
+                        <p>Age: 18+</p>
+                        <p>Available Slots: 10/{event.slots}</p>
+                        <button
+                            className="ml-[25%] rounded-md bg-blue-500 w-[50%] text-white"
+                            onClick={closeModal}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+        return null;
+    };
 
     return (
         <div className="flex">
@@ -217,33 +263,33 @@ export default function Page() {
                 <table>
                     <tbody className="flex flex-col justify-center items-center">
                         {/* Month navigation */}
-                        <tr className="flex justify-evenly border border-dashed border-white">
+                        <tr className="flex justify-evenly border border-dashed border-white phone:text-md md:text-2xl">
                             <td className="bg-black text-white md:pt-[1.5vh] md:pl-[.65vw] w-[12.5vw]">
                                 <button
                                     onClick={handlePrevMonth}
-                                    className="flex w-[100%] border border-dashed border-red-700 md:text-[4vh] sm:text-sm"
+                                    className="flex w-[100%] border border-dashed border-red-700"
                                 >
-                                    Prev Month &lt;&lt;
+                                    &lt;&lt; Prev Month
                                 </button>
                             </td>
                             {/* Display current month */}
-                            <td className="bg-red-600 border border-black sm:h-[17vh] md:text-[10vh] sm:text-sm  text-center pt-[5vh] font-bold w-[50vw]">
+                            <td className="bg-red-600 border  border-black sm:h-[17vh] text-center pb-[2vh] pt-[2vh] font-bold w-[50vw]">
                                 {currentMonth}
                             </td>
                             <td className=" bg-black text-white md:pt-[1.5vh] md:pl-[.65vw] w-[12.5vw]">
                                 <button
                                     onClick={handleNextMonth}
-                                    className="flex w-[100%] border border-dashed border-red-700 md:text-[4vh] sm:text-sm"
+                                    className="flex w-[100%] border border-dashed border-red-700 "
                                 >
                                     Next Month &gt;&gt;
                                 </button>
                             </td>
                         </tr>
                         {/* Days of the week */}
-                        <tr className="flex flex-row w-[100%] border border-dashed border-green-400">
+                        <tr className="flex flex-row w-[100%]">
                             {daysOfWeek.map((day, index) => (
                                 <td
-                                    className="border border-double border-purple-700 py-[2%] w-[14.29%] bg-yellow-500 text-white"
+                                    className="border border-double py-[2%] w-[14.29%] bg-yellow-500 text-white"
                                     key={index}
                                 >
                                     {day}
@@ -253,10 +299,7 @@ export default function Page() {
                         {/* Days of the month make each row only to have 7 days*/}
                         {/* loop through the days of the month displaying 7 days in one row until the end of the month with  */}
                         {displayDays().map((week, index) => (
-                            <tr
-                                key={index}
-                                className="flex flex-row w-[100%]  border border-dashed border-green-400"
-                            >
+                            <tr key={index} className="flex flex-row w-[100%]">
                                 {week.map((day, index) => (
                                     <td
                                         //if the day is a saturady or sunday change the font color to red
@@ -267,13 +310,18 @@ export default function Page() {
                                                 : { color: "black" }
                                         }
                                         key={index}
-                                        className="  border border-double border-purple-700  pb-[5%] w-[14.29%] bg-green-500 text-white "
+                                        className="  border border-double border-purple-700  pb-[5%] w-[14.29%] bg-green-300 text-white "
                                     >
                                         {/* diplay the day and te image associated with the event for that date */}
                                         <div className="bg-gray-200 w-[100%]">
                                             {day}
                                         </div>
-                                        {dispalyEventImg(`${currentYear}-${currentMonthIndex + 1}-${day}`)}
+                                        {dispalyEventImg(
+                                            `${currentYear}-${
+                                                currentMonthIndex + 1
+                                            }-${day}`
+                                        )}
+                                        {popUp(selectedEvent)}
                                     </td>
                                 ))}
                             </tr>
