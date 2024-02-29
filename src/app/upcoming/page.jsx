@@ -222,20 +222,20 @@ export default function Page() {
 
             return (
                 <div className="fixed top-0 left-0 w-full h-full flex bg-opacity-1 items-center justify-center overflow-y-auto">
-                    <div className="bg-emerald-200  p-4 max-w-xl overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl ">
+                    <div className="bg-emerald-200 p-2 w-[75%] h-[45%] overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl text-center">
                         {dispalyEventImg(event.date)}
                         <h3>Time: 6:00pm - 8:00pm</h3>
-                        <p>
+                        {/* <p>
                             Location: 3447 Mcgehee Rd Suite N <br></br>
                             MONTGOMERY, Alabama 36111
-                        </p>
+                        </p> */}
                         <br />
                         <p>Cost: $25</p>
                         <p>Supplies: Provided</p>
                         <p>Age: 18+</p>
                         <p>Available Slots: 10/{event.slots}</p>
                         <button
-                            className="ml-[25%] rounded-md bg-blue-500 w-[50%] text-white"
+                            className="rounded-md bg-blue-500 w-[50%] text-white"
                             onClick={closeModal}
                         >
                             Close
@@ -263,23 +263,23 @@ export default function Page() {
                 <table>
                     <tbody className="flex flex-col justify-center items-center">
                         {/* Month navigation */}
-                        <tr className="flex justify-evenly border border-dashed border-white phone:text-md md:text-2xl">
-                            <td className="bg-black text-white md:pt-[1.5vh] md:pl-[.65vw] w-[12.5vw]">
+                        <tr className="flex justify-evenly phone:text-md md:text-2xl">
+                            <td className="bg-yellow-200 text-left text-black font-semibold pt-[1.5vh] md:pr-[.65vw] w-[12.2vw]">
                                 <button
                                     onClick={handlePrevMonth}
-                                    className="flex w-[100%] border border-dashed border-red-700"
+                                    className="flex w-[100%]"
                                 >
                                     &lt;&lt; Prev Month
                                 </button>
                             </td>
                             {/* Display current month */}
-                            <td className="bg-red-600 border  border-black sm:h-[17vh] text-center pb-[2vh] pt-[2vh] font-bold w-[50vw]">
+                            <td className="bg-emerald-500 sm:h-[17vh] text-center pb-[2vh] pt-[2vh] font-bold w-[50vw]">
                                 {currentMonth}
                             </td>
-                            <td className=" bg-black text-white md:pt-[1.5vh] md:pl-[.65vw] w-[12.5vw]">
+                            <td className="bg-yellow-200 text-right text-black font-semibold pt-[1.5vh] md:pr-[.65vw] w-[12.2vw]">
                                 <button
                                     onClick={handleNextMonth}
-                                    className="flex w-[100%] border border-dashed border-red-700 "
+                                    className="flex w-[100%] "
                                 >
                                     Next Month &gt;&gt;
                                 </button>
@@ -289,7 +289,7 @@ export default function Page() {
                         <tr className="flex flex-row w-[100%]">
                             {daysOfWeek.map((day, index) => (
                                 <td
-                                    className="border border-double py-[2%] w-[14.29%] bg-yellow-500 text-white"
+                                    className="border border-double border-purple-700 py-[2%] w-[14.29%] bg-yellow-200 text-black text-center font-bold"
                                     key={index}
                                 >
                                     {day}
@@ -299,7 +299,7 @@ export default function Page() {
                         {/* Days of the month make each row only to have 7 days*/}
                         {/* loop through the days of the month displaying 7 days in one row until the end of the month with  */}
                         {displayDays().map((week, index) => (
-                            <tr key={index} className="flex flex-row w-[100%]">
+                            <tr key={index} className="flex flex-row w-[100%] font-semibold">
                                 {week.map((day, index) => (
                                     <td
                                         //if the day is a saturady or sunday change the font color to red
