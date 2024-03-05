@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function navBanner(){
     return (
-        <div className="border border-red-800">
+        <div className="border border-red-800 ">
             
             <NavLinks />
         </div>

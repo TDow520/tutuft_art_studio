@@ -16,19 +16,19 @@ export default function RootLayout({ children }) {
 
     return (
         <html lang="en">
-            <body className={`h-full ${inter.className}`}>
-                <div className="w-full">
-                    <NavBanner />
+            <body className={` ${inter.className} `}>
+                <div className="flex flex-col w-[100%] items-center text-center">
+                    <div className="w-full bg-white">
+                        <NavBanner />
+                    </div>
+                    This is the main container
+                    <div className="flex flex-col h-[95%] w-[95%] border border-yellow-200 text-center items-center">
+                        {children}
+                    </div>
+                    <footer className="flex flex-col mt-[.5%] text-center justify-center border border-red-800 desktop:text-[150%] laptop:w-[55%]">
+                        copyright &copy; {year}
+                    </footer>
                 </div>
-                This is the main container
-                <div className="h-[95%]">
-                    this holds the children pages
-                    {children}
-                </div>
-                
-                <footer className="mt-[.5%] text-center border border-red-800 text-[150%]">
-                    copyright &copy; {year}
-                </footer>
             </body>
         </html>
     );

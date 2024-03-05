@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -27,8 +28,8 @@ const links = [
 ];
 
 export default function NavLinks() {
-    const currentPath = usePathname();  
-    
+    const currentPath = usePathname();
+
     return (
         <div className="flex">
             <div className="border border-red-800 mr-[5%] ]">
@@ -41,7 +42,7 @@ export default function NavLinks() {
                     />
                 </Link>
             </div>
-            <nav className="flex border py-[1%] mr-[3%] justify-around border-black w-[75%]">
+            <nav className="hidden laptop:flex border py-[1%] mr-[3%] justify-around border-black w-[75%]">
                 {links.map((link, index) => (
                     <Link key={index} href={link.href}>
                         <div
@@ -53,6 +54,39 @@ export default function NavLinks() {
                         </div>
                     </Link>
                 ))}
+                <div className="px-1 m-2 lg:hidden" onClick={handleMenuClick}>
+                    {!showMenu ? (
+                        <AiOutlineMenu size={20} />
+                    ) : (
+                        <AiOutlineClose size={20} />
+                    )}
+                </div>
+                <div
+                    className={
+                        showMenu
+                            ? "fixed left-[.05%] top-[55px] w-[60%] h-full border-l border-l-gray-900 bg-gray-500 shadow-lg shadow-white rounded-[2%] ease-in-out duration-500 z-[1] ml-2"
+                            : "fixed left-[-90%]"
+                    }
+                >
+                    <ul className="uppercase p-10 ml-2">
+                        {/* <li className="p-4 border-b border-gray-700 hover:font-bold">
+                                <Link to ={`/`}>Sign-in</Link>
+                            </li> */}
+                        {links.map((link, index) => (
+                            <Link key={index} href={link.href}>
+                                <li
+                                    className={`flex flex-row m-1 text-emerald-600 drop-shadow-lg  ${
+                                        currentPath === link.href
+                                            ? "active"
+                                            : ""
+                                    }`}
+                                >
+                                    {link.name}
+                                </li>
+                            </Link>
+                        ))}
+                    </ul>
+                </div>
             </nav>
         </div>
     );

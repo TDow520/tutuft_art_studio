@@ -3,8 +3,8 @@ import MapComponent from "./mapComponent";
 
 export default function Page() {
     return (
-        <div className="flex flex-col h-[91.25vh]">
-            <div className="mx-auto p-[2%] my-[2%] bg-emerald-900 w-[65%] text-yellow-200">
+        <div className="flex flex-col h-[95%]">
+            <div className="mx-auto p-[2%] my-[2%] bg-emerald-900 phone:w-[100%] tablet:w-[65%] text-yellow-200">
                 <h1 className="font-extrabold text-3xl text-center mb-[2%]">
                     ALL ABOUT TUTUFT
                 </h1>
@@ -22,7 +22,7 @@ export default function Page() {
 
             {/* this is where the user can send an email to the owner */}
             <div className="flex flex-row justify-evenly">
-                <div className="flex flex-col w-[50%]">
+                <div className="flex flex-col phone:w-[100%] tablet:w-[50%]">
                     <h2 className="text-2xl font-bold text-center">CONTACT</h2>
                     <form className="flex flex-col bg-slate-400 bg-opacity-40 p-[2%] rounded-md my-[3%]">
                         <label htmlFor="name">Name:</label>
@@ -55,11 +55,11 @@ export default function Page() {
                     </form>
                 </div>
             </div>
-            <div className="flex flex-row justify-evenly bg-emerald-900 py-[1%]">
+            <div className="flex flex-row phone:flex-col justify-evenly bg-emerald-900 py-[1%] w-[100%] border border-dashed border-teal-200">
                 <MapComponent />
-                <div className="flex flex-col my-auto w-[30%] text-yellow-200">
+                <div className="flex flex-col my-auto w-[100%] text-yellow-200">
                     <h2 className="text-2xl font-bold text-center">LOCATION</h2>
-                    <p className="font-medium text-2xl">
+                    <p className="font-medium text-2xl phone:text-md">
                         3447 Mcgehee Rd Suite N
                         <br />
                         MONTGOMERY, Alabama 36111
@@ -70,8 +70,8 @@ export default function Page() {
                         <h2 className="text-2xl font-bold text-center ">
                             HOURS OF OPERATION
                         </h2>
-                        <table className="font-semibold text-xl">
-                            <tr className="flex justify-between">
+                        <table className="font-semibold text-xl phone:text-md ">
+                            <tr className="flex justify-between phone:justify-evenly">
                                 <td>Monday</td>
                                 <td>CLOSED</td>
                             </tr>

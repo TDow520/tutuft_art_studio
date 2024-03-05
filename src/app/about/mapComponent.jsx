@@ -33,7 +33,7 @@ const MapComponent = () => {
         <DynamicMapContainer
             center={[32.331528, -86.243504]}
             zoom={18}
-            style={{ height: "30vh", width: "50%" }}
+            style={{ height: "30vh", width: "100%" }}
         >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <Marker position={[32.331528, -86.243504]}>

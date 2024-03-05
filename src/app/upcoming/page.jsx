@@ -94,7 +94,15 @@ export default function Page() {
     };
 
     // Array of days of the week
-    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
     // Generate days array for the current month
     const daysArray = generateDaysArray(currentMonthIndex, currentYear);
 
@@ -221,8 +229,8 @@ export default function Page() {
             // get the event that is being clicked on
 
             return (
-                <div className="fixed top-0 left-0 w-full h-full flex bg-opacity-1 items-center justify-center overflow-y-auto">
-                    <div className="bg-emerald-200 p-2 w-[75%] h-[45%] overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl text-center">
+                <div className="fixed top-0 left-0 w-full h-full flex bg-opacity-1 items-center justify-center overflow-y-auto ">
+                    <div className="bg-emerald-200 p-2 w-[55%] h-[55%] overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl text-center">
                         {dispalyEventImg(event.date)}
                         <h3>Time: 6:00pm - 8:00pm</h3>
                         {/* <p>
@@ -248,10 +256,10 @@ export default function Page() {
     };
 
     return (
-        <div className="flex">
-            <div className="border border-double border-blue-800 mx-auto w-[75%] h-[75%]">
+        <div className="items-center w-[80%]">
+            <div className="flex flex-col  w-full">
                 {/* Calendar display */}
-                <div className="flex border border-violet-700 sm:w-[80vw] md:w-[100%] sm:h-[20.5vh] md:h-[18.5vh]">
+                <div className="flex border border-violet-700 w-full phone:h-[20.5%] tablet:h-[18.5%] laptop:h-[15%]">
                     <Image
                         src="/heart_tree.jpeg"
                         alt=""
@@ -261,25 +269,25 @@ export default function Page() {
                     />
                 </div>
                 <table>
-                    <tbody className="flex flex-col justify-center items-center">
+                    <tbody className="flex flex-col justify-center items-center w-full">
                         {/* Month navigation */}
-                        <tr className="flex justify-evenly phone:text-md md:text-2xl">
-                            <td className="bg-yellow-200 text-left text-black font-semibold pt-[1.5vh] md:pr-[.65vw] w-[12.2vw]">
+                        <tr className="flex justify-evenly phone:text-md tablet:text-2xl border-purple-700 w-[100%]">
+                            <td className="bg-yellow-200 text-right text-black font-semibold pt-[1.5%]  laptop:w-[18.35%] border border-double border-purple-700 ">
                                 <button
                                     onClick={handlePrevMonth}
-                                    className="flex w-[100%]"
+                                    className="flex w-[100%] justify-start"
                                 >
                                     &lt;&lt; Prev Month
                                 </button>
                             </td>
                             {/* Display current month */}
-                            <td className="bg-emerald-500 sm:h-[17vh] text-center pb-[2vh] pt-[2vh] font-bold w-[50vw]">
+                            <td className="bg-emerald-500 phone:h-[17%] text-center pb-[2%] pt-[2%] font-bold phone:w-[50%] laptop:w-[92%] border border-double border-purple-700">
                                 {currentMonth}
                             </td>
-                            <td className="bg-yellow-200 text-right text-black font-semibold pt-[1.5vh] md:pr-[.65vw] w-[12.2vw]">
+                            <td className="bg-yellow-200 text-left text-black font-semibold pt-[1.5%] tablet:pr-[.65%] laptop:w-[18.35%] border border-double border-purple-700">
                                 <button
                                     onClick={handleNextMonth}
-                                    className="flex w-[100%] "
+                                    className="flex w-[100%] justify-end"
                                 >
                                     Next Month &gt;&gt;
                                 </button>
@@ -299,7 +307,10 @@ export default function Page() {
                         {/* Days of the month make each row only to have 7 days*/}
                         {/* loop through the days of the month displaying 7 days in one row until the end of the month with  */}
                         {displayDays().map((week, index) => (
-                            <tr key={index} className="flex flex-row w-[100%] font-semibold">
+                            <tr
+                                key={index}
+                                className="flex flex-row w-[100%] font-semibold"
+                            >
                                 {week.map((day, index) => (
                                     <td
                                         //if the day is a saturady or sunday change the font color to red
@@ -313,7 +324,7 @@ export default function Page() {
                                         className="  border border-double border-purple-700  pb-[5%] w-[14.29%] bg-green-300 text-white "
                                     >
                                         {/* diplay the day and te image associated with the event for that date */}
-                                        <div className="bg-gray-200 w-[100%]">
+                                        <div className="bg-gray-200 w-[100%] text-left">
                                             {day}
                                         </div>
                                         {dispalyEventImg(
