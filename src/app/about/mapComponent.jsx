@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
 import dynamic from "next/dynamic";
 
 const DynamicMapContainer = dynamic(
@@ -9,12 +7,6 @@ const DynamicMapContainer = dynamic(
         ssr: false // This ensures that the component is only rendered on the client side
     }
 );
-
-const customIcon = new L.Icon({
-    iconUrl: "/neon_heart.",
-    iconSize: [50, 50],
-    iconAnchor: [25, 25],
-});
 
 const MapComponent = () => {
     const [isClient, setIsClient] = useState(false);
@@ -27,7 +19,15 @@ const MapComponent = () => {
         return null; // Render nothing on the server side
     }
 
+    // Conditionally import leaflet and its components only on the client side
+    const L = require("leaflet");
+    const { TileLayer, Marker, Popup } = require("react-leaflet");
 
+    const customIcon = new L.Icon({
+        iconUrl: "/neon_heart.jpg", // Adjust the icon URL as per your file structure
+        iconSize: [50, 50],
+        iconAnchor: [25, 25]
+    });
 
     return (
         <DynamicMapContainer
@@ -36,7 +36,7 @@ const MapComponent = () => {
             style={{ height: "30vh", width: "100%" }}
         >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker position={[32.331528, -86.243504]}>
+            <Marker position={[32.331528, -86.243504]} icon={customIcon}>
                 <Popup>
                     TUTUFT, LLC <br /> Home for your art designs.
                 </Popup>

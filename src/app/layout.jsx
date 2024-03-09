@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={` ${inter.className} `}>
-                <div className="flex flex-col w-[100%] items-center text-center">
+                <div className="flex flex-col w-[100%] items-center text-center bg-green-600">
                     <div className="w-full bg-white">
                         <NavBanner />
                     </div>

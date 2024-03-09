@@ -12,12 +12,14 @@
     "@react-leaflet/core": "^2.1.0",
     "leaflet": "^1.9.4",
     "next": "14.1.0",
+    "nodemailer": "^6.9.12",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.14",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
