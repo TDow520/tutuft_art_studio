@@ -24,7 +24,7 @@ function CalendarHead({
         <div className="calendar-header flex justify-evenly phone:text-md tablet:text-2xl border border-purple-700 w-[100%]">
             <button
                 onClick={handlePrevMonth}
-                className="bg-yellow-200 text-right text-black font-semibold pt-[1.5%] laptop:w-[18.35%] desktop:w-[17.87%] border border-double border-purple-700 "
+                className="bg-yellow-200 text-left text-black font-semibold pt-[1.5%] laptop:w-[18.35%] desktop:w-[17.87%] border border-double border-purple-700 "
             >
                 &lt;&lt; Prev Month
             </button>

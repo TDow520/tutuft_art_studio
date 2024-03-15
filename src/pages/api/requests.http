@@ -1,0 +1,16 @@
+### get tthe api folder
+GET http://localhost:3000/api/
+
+### get the sendEamil
+GET http://localhost:3000/api/sendEmail
+
+
+### send an email using sendEmail
+POST http://localhost:3000/api/sendEmail
+
+{
+    "name": "John Doe",
+    "email": "john.doe@gmail.com ",
+    "message": "Hello, I am interested in your services"
+
+}
