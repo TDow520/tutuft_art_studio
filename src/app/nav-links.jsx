@@ -38,7 +38,7 @@ export default function NavLinks() {
 
     return (
         <div className="flex">
-            <div className="border border-red-800 mr-[5%] ]">
+            <div className="border border-red-800 mr-[5%]">
                 <Link href="/">
                     <Image
                         src="/logo.png"
@@ -52,9 +52,9 @@ export default function NavLinks() {
                 {links.map((link, index) => (
                     <Link key={index} href={link.href}>
                         <div
-                            className={`flex flex-row m-1 text-emerald-600 drop-shadow-lg  ${
+                            className={`flex flex-row m-1 text-emerald-600 drop-shadow-lg text-[35px] ${
                                 currentPath === link.href ? "active" : ""
-                            }`}
+                            } hover:font-bold hover:text-emerald-800 hover:underline`}
                         >
                             {link.name}
                         </div>

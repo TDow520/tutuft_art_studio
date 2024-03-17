@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import eventModal from "../popUpModal";
 
-function EventImage({ date, events, showModal }) {
+function EventImage({ date, events}) {
     const displayEventImg = () => {
         const images = [];
         const filteredEvents = events.filter((event) => event.date === date);
@@ -43,6 +44,7 @@ function EventImage({ date, events, showModal }) {
                                     className="hover:drop-shadow-2xl rounded-md cursor-pointer"
                                 />
                                 <p className="underline">Paint 'n' Sip</p>
+                                <eventModal event={event} />
                             </div>
                         );
                         break;

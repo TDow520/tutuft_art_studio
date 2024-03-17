@@ -1,7 +1,7 @@
 import React from "react";
 import EventImage from "./EventImg";
 
-function Day({ date, day, showModal }) {
+function Day({ date, day}) {
     // Mock events data
     const events = [
         {
@@ -81,7 +81,6 @@ function Day({ date, day, showModal }) {
                                     key={index}
                                     date={date}
                                     events={events}
-                                    showModal={showModal}
                                 />
                             );
                         }
