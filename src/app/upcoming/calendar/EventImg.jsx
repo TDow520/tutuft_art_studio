@@ -53,7 +53,9 @@ function EventImage({ date, events }) {
                                     onClick={() => showModal(event)}
                                     className="hover:drop-shadow-2xl rounded-md cursor-pointer"
                                 />
-                                <p className="underline">Paint 'n' Sip</p>
+                                <p className="underline">
+                                    Paint `&apos;`n`&apos;` Sip
+                                </p>
                             </div>
                         );
                         break;
