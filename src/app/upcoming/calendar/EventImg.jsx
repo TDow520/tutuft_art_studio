@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import eventModal from "../popUpModal";
+import EventModal from "../popUpModal";
 
-function EventImage({ date, events}) {
+function EventImage({ date, events }) {
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [popUpVisible, setPopUpVisible] = useState(false);
+
+    // New function to handle image clicks
+    const showModal = (event) => {
+        setSelectedEvent(event);
+        setPopUpVisible(true);
+    };
+
     const displayEventImg = () => {
         const images = [];
         const filteredEvents = events.filter((event) => event.date === date);
-
 
         filteredEvents.forEach((event, index) => {
             if (event.date === date) {
@@ -44,7 +52,6 @@ function EventImage({ date, events}) {
                                     className="hover:drop-shadow-2xl rounded-md cursor-pointer"
                                 />
                                 <p className="underline">Paint 'n' Sip</p>
-                                <eventModal event={event} />
                             </div>
                         );
                         break;
@@ -56,7 +63,12 @@ function EventImage({ date, events}) {
         return images;
     };
 
-    return <div className="event-images">{displayEventImg()}</div>;
+    return (
+        <div className="event-images">
+            {displayEventImg()}
+            {selectedEvent && <EventModal event={selectedEvent} visible={popUpVisible} onClose={() => setPopUpVisible(false)} />}
+        </div>
+    );
 }
 
 export default EventImage;
