@@ -3,14 +3,14 @@ import React from "react";
 import CalendarHead from "./CalendarHead";
 import CalendarBody from "./CalendarBody";
 
-function Calendar({
+const Calendar = ({
     currentMonthIndex,
     currentYear,
     handlePrevMonth,
     handleNextMonth,
     displayDays,
     showModal
-}) {
+}) => {
     return (
         <div className="calendar">
             <CalendarHead

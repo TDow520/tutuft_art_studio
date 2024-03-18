@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import EventModal from "../popUpModal";
 
-function EventImage({ date, events }) {
+const EventImage= ({ date, events }) => {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [popUpVisible, setPopUpVisible] = useState(false);
 
@@ -54,7 +54,7 @@ function EventImage({ date, events }) {
                                     className="hover:drop-shadow-2xl rounded-md cursor-pointer"
                                 />
                                 <p className="underline">
-                                    Paint `&apos;`n`&apos;` Sip
+                                    Paint &apos;n&apos; Sip
                                 </p>
                             </div>
                         );

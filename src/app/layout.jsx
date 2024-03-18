@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import NavBanner from "./NavBanner";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 const currentDate = new Date();
