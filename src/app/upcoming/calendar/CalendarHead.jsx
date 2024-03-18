@@ -1,11 +1,11 @@
 import React from "react";
 
-function CalendarHead({
+const CalendarHead = ({
     currentMonthIndex,
     currentYear,
     handlePrevMonth,
     handleNextMonth
-}) {
+}) => {
     const months = [
         "January",
         "February",

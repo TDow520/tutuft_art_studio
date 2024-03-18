@@ -2,7 +2,7 @@
 import MapComponent from "./mapComponent";
 import { useState } from "react";
 
-export default function Page() {
+const Page = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -101,7 +101,7 @@ export default function Page() {
             </div>
             <div className="flex flex-row phone:flex-col justify-evenly bg-emerald-900 py-[1%] w-[100%] border border-dashed border-teal-200">
                 <MapComponent />
-                <div className="flex flex-col my-auto w-[100%] text-yellow-200">
+                <div className="flex flex-col my-auto w-[100%] text-yellow-200 ml-[1%]">
                     <h2 className="text-2xl font-bold text-center">LOCATION</h2>
                     <p className="font-medium text-2xl phone:text-md">
                         3447 Mcgehee Rd Suite N
@@ -110,7 +110,7 @@ export default function Page() {
                     </p>
                     <br />
                     <br />
-                    <div className="flex flex-col">
+                    <div className="flex flex-col mr-[2%]">
                         <h2 className="text-2xl font-bold text-center ">
                             HOURS OF OPERATION
                         </h2>
@@ -170,3 +170,5 @@ export default function Page() {
         </div>
     );
 }
+
+export default Page;

@@ -1,10 +1,12 @@
 import NavLinks from "../nav-links";
 import Link from "next/link";
 
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
     return (
         <div>
             <NavLinks />
         </div>
     );
-}
+};
+
+export default Layout;

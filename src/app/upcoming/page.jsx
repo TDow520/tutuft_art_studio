@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Calendar from "./calendar/page";
 
-export default function Page() {
+const Page = () => {
 
     // Get current date
     const date = new Date();
@@ -121,4 +121,6 @@ export default function Page() {
             </div>
         </div>
     );
-}
+};
+
+export default Page;

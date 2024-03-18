@@ -1,7 +1,7 @@
 import React from "react";
 import EventImage from "./EventImg";
 
-function Day({ date, day}) {
+const Day = ({ date, day}) => {
     // Mock events data
     const events = [
         {

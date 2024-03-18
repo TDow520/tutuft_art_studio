@@ -1,6 +1,6 @@
 import React from "react";
 
-function Event({ event }) {
+const Event = ({ event }) => {
     return (
         <div className="event">
             <div className="event-title">{event.title}</div>

@@ -1,7 +1,7 @@
 import React from "react";
 import Day from "./CalendarDays";
 
-function CalendarBody({ currentMonthIndex, currentYear, displayDays}) {
+const CalendarBody = ({ currentMonthIndex, currentYear, displayDays}) => {
     // Array of days of the week
     const daysOfWeek = [
         "Sunday",
