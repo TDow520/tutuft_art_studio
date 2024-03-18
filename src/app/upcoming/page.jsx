@@ -4,14 +4,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Calendar from "./calendar/page";
 
-const Page = () => {
-
+const Upcoming = () => {
     // Get current date
     const date = new Date();
     const [currentMonthIndex, setCurrentMonthIndex] = useState(date.getMonth());
     const [currentYear, setCurrentYear] = useState(date.getFullYear());
-    
-
 
     // Handler for moving to previous month
     const handlePrevMonth = () => {
@@ -32,7 +29,6 @@ const Page = () => {
             setCurrentYear((nextYear) => nextYear + 1);
         }
     };
-
 
     // Function to generate array of days for the current month
     const generateDaysArray = (month, year) => {
@@ -93,9 +89,6 @@ const Page = () => {
         return days;
     };
 
-
-    
-
     return (
         <div className="items-center w-[80%]">
             <div className="flex flex-col  w-full">
@@ -115,12 +108,10 @@ const Page = () => {
                     handlePrevMonth={handlePrevMonth}
                     handleNextMonth={handleNextMonth}
                     displayDays={displayDays}
-
-
                 />
             </div>
         </div>
     );
 };
 
-export default Page;
+export default Upcoming;

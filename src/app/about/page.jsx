@@ -2,7 +2,7 @@
 import MapComponent from "./mapComponent";
 import { useState } from "react";
 
-const Page = () => {
+const About = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -171,4 +171,4 @@ const Page = () => {
     );
 }
 
-export default Page;
+export default About;
