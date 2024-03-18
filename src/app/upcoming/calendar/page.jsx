@@ -8,8 +8,7 @@ const Calendar = ({
     currentYear,
     handlePrevMonth,
     handleNextMonth,
-    displayDays,
-    showModal
+    displayDays
 }) => {
     return (
         <div className="calendar">
@@ -23,7 +22,6 @@ const Calendar = ({
                 currentMonthIndex={currentMonthIndex}
                 currentYear={currentYear}
                 displayDays={displayDays}
-                showModal={showModal}
             />
         </div>
     );
