@@ -24,6 +24,7 @@ const RootLayout = ({ children }) => {
                     This is the main container
                     <div className="flex flex-col h-[95%] w-[95%] border border-yellow-200 text-center items-center">
                         {children}
+                        <SpeedInsights />
                     </div>
                     <footer className="flex flex-col mt-[.5%] text-center justify-center border border-red-800 desktop:text-[150%] laptop:w-[55%]">
                         copyright &copy; {year}
