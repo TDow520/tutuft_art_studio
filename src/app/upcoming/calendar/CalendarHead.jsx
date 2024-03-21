@@ -28,7 +28,9 @@ const CalendarHead = ({
             >
                 &lt;&lt; Prev Month
             </button>
-            <h2 className="bg-emerald-500 phone:h-[17%] text-center pb-[2%] pt-[2%] font-bold phone:w-[50%] laptop:w-[92%] desktop:w-[90%] border border-double border-purple-700">{`${months[currentMonthIndex]} ${currentYear}`}</h2>
+            <h2 className="bg-emerald-500 phone:h-[17%] text-center pb-[2%] pt-[2%] font-bold phone:w-[50%] laptop:w-[92%] desktop:w-[90%] border border-double border-purple-700">
+                {`${months[currentMonthIndex]} ${currentYear}`}
+            </h2>
             <button
                 onClick={handleNextMonth}
                 className="bg-yellow-200 text-right text-black font-semibold pt-[1.5%] laptop:w-[18.35%] desktop:w-[17.87%] border border-double border-purple-700 "

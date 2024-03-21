@@ -5,10 +5,10 @@ import CalendarBody from "./CalendarBody";
 
 const Calendar = ({
     currentMonthIndex,
-    currentYear,
-    handlePrevMonth,
-    handleNextMonth,
-    displayDays
+        currentYear,
+        handlePrevMonth,
+        handleNextMonth,
+        displayDays
 }) => {
     return (
         <div className="calendar">
@@ -18,10 +18,11 @@ const Calendar = ({
                 handlePrevMonth={handlePrevMonth}
                 handleNextMonth={handleNextMonth}
             />
-            <CalendarBody
-                currentMonthIndex={currentMonthIndex}
-                currentYear={currentYear}
-                displayDays={displayDays}
+
+            <CalendarBody 
+            currentMonthIndex={currentMonthIndex}
+            currentYear={currentYear}
+            displayDays={displayDays}
             />
         </div>
     );

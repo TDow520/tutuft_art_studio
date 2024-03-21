@@ -12,22 +12,40 @@ const Upcoming = () => {
 
     // Handler for moving to previous month
     const handlePrevMonth = () => {
-        setCurrentMonthIndex((prevMonth) =>
-            prevMonth === 0 ? 11 : prevMonth - 1
-        );
-        if (currentMonthIndex === 0) {
-            setCurrentYear((prevYear) => prevYear - 1);
-        }
+        const newMonthIndex = currentMonthIndex === 0 ? 11 : currentMonthIndex - 1;
+        const newYear = currentMonthIndex === 0 ? currentYear - 1 : currentYear;
+        setCurrentMonthIndex(newMonthIndex);
+        setCurrentYear(newYear);
     };
 
     // Handler for moving to next month
     const handleNextMonth = () => {
-        setCurrentMonthIndex((nextMonth) =>
-            nextMonth === 11 ? 0 : nextMonth + 1
-        );
-        if (currentMonthIndex === 11) {
-            setCurrentYear((nextYear) => nextYear + 1);
-        }
+        const newMonthIndex = currentMonthIndex === 11 ? 0 : currentMonthIndex + 1;
+        const newYear = currentMonthIndex === 11 ? currentYear + 1 : currentYear;
+        setCurrentMonthIndex(newMonthIndex);
+        setCurrentYear(newYear);
+    };
+
+        // setCurrentMonthIndex((nextMonth) =>
+        //     nextMonth === 11 ? 0 : nextMonth + 1
+        // );
+        // if (currentMonthIndex === 11) {
+        //     setCurrentYear((nextYear) => nextYear + 1);
+        // }
+
+    // Get number of days in the month
+    const getDaysInMonth = (month, year) => {
+        return new Date(year, month + 1, 0).getDate();
+    };
+
+    // Get the first day of the month
+    const firstDayOfMonth = (month, year) => {
+        return new Date(year, month, 1).getDay();
+    };
+
+    // Get the last day of the month
+    const lastDayOfMonth = (month, year) => {
+        return new Date(year, month + 1, 0).getDay();
     };
 
     // Function to generate array of days for the current month
@@ -55,30 +73,15 @@ const Upcoming = () => {
         return daysArray;
     };
 
-    // Get number of days in the month
-    const getDaysInMonth = (month, year) => {
-        return new Date(year, month + 1, 0).getDate();
-    };
-
-    // Get the first day of the month
-    const firstDayOfMonth = (month, year) => {
-        return new Date(year, month, 1).getDay();
-    };
-
-    // Get the last day of the month
-    const lastDayOfMonth = (month, year) => {
-        return new Date(year, month + 1, 0).getDay();
-    };
-
     // Generate days array for the current month
-    const daysArray = generateDaysArray(currentMonthIndex, currentYear);
+    const monthDays = generateDaysArray(currentMonthIndex, currentYear);
 
     // display days of the month in 7 days per row
     const displayDays = () => {
         let days = [];
         let week = [];
         // adds the images for the event that are being held that day
-        daysArray.forEach((day, index) => {
+        monthDays.forEach((day, index) => {
             if (index % 7 === 0 && index !== 0) {
                 days.push(week);
                 week = [];

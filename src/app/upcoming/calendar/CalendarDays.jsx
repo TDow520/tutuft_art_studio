@@ -56,6 +56,9 @@ const Day = ({ date, day}) => {
         }
     ];
 
+    // Filter events for the current day
+    const eventsForDay = events.filter((event) => event.date === date);
+
     return (
         <div className="day border border-double border-purple-700  pb-[5%] w-[14.29%] bg-green-300 text-white ">
             <div
@@ -71,20 +74,8 @@ const Day = ({ date, day}) => {
             <div className="events">
                 {/* if the event  date is = to the current date month then display the evnt image */}
                 {
-                    // loop the events array
-                    events.map((event, index) => {
-                        // if the event date is equal to the current date
-                        if (event.date === date) {
-                            // display the event image
-                            return (
-                                <EventImage
-                                    key={index}
-                                    date={date}
-                                    events={events}
-                                />
-                            );
-                        }
-                    })
+                    <EventImage date={date} events={eventsForDay} />
+
                 }
             </div>
         </div>
