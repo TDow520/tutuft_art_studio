@@ -94,9 +94,9 @@ const Upcoming = () => {
 
     return (
         <div className="items-center w-[80%]">
-            <div className="flex flex-col  w-full">
+            <div className="flex flex-col  w-full mt-[2%]">
                 {/* Calendar display */}
-                <div className="flex border border-violet-700 w-full phone:h-[20.5%] tablet:h-[18.5%] laptop:h-[15%]">
+                {/* <div className="flex border border-violet-700 w-full phone:h-[20.5%] tablet:h-[18.5%] laptop:h-[15%]">
                     <Image
                         src="/heart_tree.jpeg"
                         alt=""
@@ -104,7 +104,7 @@ const Upcoming = () => {
                         width={100}
                         height={100}
                     />
-                </div>
+                </div> */}
                 <Calendar
                     currentMonthIndex={currentMonthIndex}
                     currentYear={currentYear}

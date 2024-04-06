@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { usePathname, useState } from "next/navigation";
+import { FiMenu } from "react-icons/fi";
+import { AiOutlineShoppingCart, AiOutlineClose } from "react-icons/ai";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const links = [
     {
@@ -19,26 +21,26 @@ const links = [
         href: "/about"
     },
     {
-        name: "About",
-        href: "/about"
+        name: "Gallery",
+        href: "/gallery"
     },
     {
-        name: "About",
-        href: "/about"
+        name: "Cart",
+        href: "/cart"
     }
 ];
 
 export default function NavLinks() {
     const currentPath = usePathname();
-    // const [showMenu, setShowMenu] = useState(false);
-    
-    // const handleMenuClick = () => {
-    //     setShowMenu(!showMenu);
-    // };
+    const [showMenu, setShowMenu] = useState(false);
+
+    const handleCloseMenu = () => {
+        setShowMenu(false);
+    };
 
     return (
-        <div className="flex">
-            <div className="border border-red-800 mr-[5%]">
+        <div className="flex text-emerald-600">
+            <div className="border border-red-800 mr-[5%] gap-5">
                 <Link href="/">
                     <Image
                         src="/logo.png"
@@ -52,7 +54,7 @@ export default function NavLinks() {
                 {links.map((link, index) => (
                     <Link key={index} href={link.href}>
                         <div
-                            className={`flex flex-row m-1 text-emerald-600 drop-shadow-lg text-[35px] ${
+                            className={`flex flex-row phone:hidden tablet:hidden m-1  drop-shadow-lg text-3xl ${
                                 currentPath === link.href ? "active" : ""
                             } hover:font-bold hover:text-emerald-800 hover:underline`}
                         >
@@ -60,39 +62,46 @@ export default function NavLinks() {
                         </div>
                     </Link>
                 ))}
-                {/* <div className="px-1 m-2 lg:hidden" onClick={handleMenuClick}>
-                    {!showMenu ? (
-                        <AiOutlineMenu size={20} />
-                    ) : (
-                        <AiOutlineClose size={20} />
-                    )}
-                </div> */}
-                {/* <div
-                    className={
-                        showMenu
-                            ? "fixed left-[.05%] top-[55px] w-[60%] h-[60%] border-l border-l-gray-900 bg-gray-500 shadow-lg shadow-white rounded-[2%] ease-in-out duration-500 z-[1] ml-2"
-                            : "fixed left-[-90%]"
-                    }
-                >
-                    <ul className="uppercase p-10 ml-2"> */}
-                        {/* <li className="p-4 border-b border-gray-700 hover:font-bold">
-                                <Link to ={`/`}>Sign-in</Link>
-                            </li> */}
-                        {/* {links.map((link, index) => (
-                            <Link key={index} href={link.href}>
-                                <li
-                                    className={`flex flex-row m-1 text-emerald-600 drop-shadow-lg  ${
-                                        currentPath === link.href
-                                            ? "active"
-                                            : ""
-                                    }`}
-                                >
-                                    {link.name}
-                                </li>
-                            </Link>
-                        ))}
-                    </ul>
-                </div> */}
+                <section className="flex flex-row justify-between gap-3 ">
+                    <AiOutlineShoppingCart className="flex border boder-slate-500 text-4xl laptop:hidden desktop:hidden " />
+                    <FiMenu
+                        onClick={() => setShowMenu(true)}
+                        className="flex border boder-slate-500 text-4xl laptop:hidden desktop:hidden "
+                    />
+                </section>
+
+                {/* This is the side menu section */}
+                {/* this needs to hide when showMenu is false */}
+                {showMenu && (
+                    <div className="fixed h-full w-screen laptop:hidden desktop:hidden bg-black/65 backdrop-blur-sm top-0 left-0 ">
+                        <section className="text-emerald-600 bg-white  flex-col absolute right-0 top-0 z-50  h-screen p-8 gap-8 transition duration-300 ease-in-out w-56 ">
+                            {/* insert the x icon as abutton to close the menu */}
+
+                            <AiOutlineClose
+                                onClick={() => setShowMenu(false)}
+                                className=" mt-0 mb-8 ml-[70%] text-5xl cursor-pointer hover:text-bold"
+                            />
+
+                            {/* inputs the menu selections */}
+                            <div className="flex flex-col gap-10">
+                                {links.map((link, index) => (
+                                    <Link key={index} href={link.href}>
+                                        <div
+                                            className={`flex flex-row m-1 drop-shadow-lg text-3xl ${
+                                                currentPath === link.href
+                                                    ? "active"
+                                                    : ""
+                                            } hover:font-bold hover:text-emerald-800 hover:underline`}
+                                            onClick={handleCloseMenu} // Close the menu when any link is clicked
+                                        >
+                                            {link.name}
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </section>
+                    </div>
+                )}
             </nav>
         </div>
     );

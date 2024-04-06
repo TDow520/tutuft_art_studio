@@ -34,6 +34,7 @@ const MapComponent = () => {
             center={[32.331528, -86.243504]}
             zoom={18}
             style={{ height: "30vh", width: "100%" }}
+            className="z-5"
         >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <Marker position={[32.331528, -86.243504]} icon={customIcon}>

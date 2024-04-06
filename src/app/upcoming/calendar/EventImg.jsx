@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import EventModal from "../popUpModal";
 
-const EventImage= ({ date, events }) => {
+const EventImage = ({ date, events }) => {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [popUpVisible, setPopUpVisible] = useState(false);
 
@@ -70,9 +70,15 @@ const EventImage= ({ date, events }) => {
     return (
         <div className="event-images">
             {displayEventImg()}
-            {selectedEvent && <EventModal event={selectedEvent} visible={popUpVisible} onClose={() => setPopUpVisible(false)} />}
+            {selectedEvent && (
+                <EventModal
+                    event={selectedEvent}
+                    visible={popUpVisible}
+                    onClose={() => setPopUpVisible(false)}
+                />
+            )}
         </div>
     );
-}
+};
 
 export default EventImage;

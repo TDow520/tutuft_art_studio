@@ -19,10 +19,10 @@ const Calendar = ({
                 handleNextMonth={handleNextMonth}
             />
 
-            <CalendarBody 
-            currentMonthIndex={currentMonthIndex}
-            currentYear={currentYear}
-            displayDays={displayDays}
+            <CalendarBody
+                currentMonthIndex={currentMonthIndex}
+                currentYear={currentYear}
+                displayDays={displayDays}
             />
         </div>
     );

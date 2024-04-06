@@ -62,9 +62,11 @@ const Day = ({ date, day}) => {
     return (
         <div className="day border border-double border-purple-700  pb-[5%] w-[14.29%] bg-green-300 text-white ">
             <div
+                // If the view is in phone view then only use the abbrv version of the days
+                
                 className="day-number bg-gray-200 w-[100%] text-left "
                 style={
-                    day === "Sat" || day === "Sun"
+                    day === "Saturday" || day === "Sunday"
                         ? { color: "red" }
                         : { color: "black" }
                 }
@@ -73,10 +75,7 @@ const Day = ({ date, day}) => {
             </div>
             <div className="events">
                 {/* if the event  date is = to the current date month then display the evnt image */}
-                {
-                    <EventImage date={date} events={eventsForDay} />
-
-                }
+                {<EventImage date={date} events={eventsForDay} />}
             </div>
         </div>
     );
