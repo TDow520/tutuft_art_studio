@@ -20,9 +20,9 @@ const About = () => {
     ];
 
     const displayHours = () => {
-        return opHours.map(day => {
+        return opHours.map((day, index) => {
             return (
-                <tbody>
+                <tbody key={index}>
                     <tr className="flex justify-between">
                         <td>{day.day}</td>
                         <td>{day.hours}</td>
