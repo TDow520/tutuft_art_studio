@@ -1,13 +1,13 @@
+// Importing necessary components
+import Carousel from "./carousel/carousel"; // Carousel component for slides
 
-import Carousel from "./carousel/carousel";
-
-
+// Home page component
 export default function Home() {
     return (
         <div className="flex flex-col border items-center border-white text-center mx-[.5%] h-[91.25vh] w-full">
+            {/* Home page content */}
             <p>Hello this is the homepage container</p>
-            <div>this is for the hours of operation and location</div>
-            
+            {/* Carousel component */}
             <Carousel />
         </div>
     );

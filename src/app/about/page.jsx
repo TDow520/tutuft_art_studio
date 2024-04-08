@@ -9,6 +9,29 @@ const About = () => {
         message: ""
     });
 
+    const opHours = [
+        { day: "Monday", hours: "CLOSED" },
+        { day: "Tuesday", hours: "CLOSED" },
+        { day: "Wednesday", hours: "CLOSED" },
+        { day: "Thursday", hours: "CLOSED" },
+        { day: "Friday", hours: "1:00pm - 9:00pm" },
+        { day: "Saturday", hours: "10:00am - 10:00pm" },
+        { day: "Sunday", hours: "1:00pm - 7:00pm" }
+    ];
+
+    const displayHours = () => {
+        return opHours.map(day => {
+            return (
+                <tbody>
+                    <tr className="flex justify-between">
+                        <td>{day.day}</td>
+                        <td>{day.hours}</td>
+                    </tr>
+                </tbody>
+            );
+        })
+    };
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -100,7 +123,9 @@ const About = () => {
                 </div>
             </div>
             <div className="flex flex-row phone:flex-col justify-evenly bg-emerald-900 py-[1%] w-[100%] border border-dashed border-teal-200">
-                <MapComponent />
+                <div className="leaflet-wrap">
+                    <MapComponent />
+                </div>
                 <div className="flex flex-col my-auto w-[100%] text-yellow-200 ml-[1%]">
                     <h2 className="text-2xl font-bold text-center">LOCATION</h2>
                     <p className="font-medium text-2xl phone:text-md">
@@ -121,48 +146,7 @@ const About = () => {
                                     <td>Hours</td>
                                 </tr>
                             </tbody>
-                            <tbody>
-                                <tr className="flex justify-between phone:justify-evenly">
-                                    <td>Monday</td>
-                                    <td>CLOSED</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr className="flex justify-between">
-                                    <td>Tuesday</td>
-                                    <td>CLOSED</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr className="flex justify-between">
-                                    <td>Wednesday</td>
-                                    <td>CLOSED</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr className="flex justify-between">
-                                    <td>Thursday</td>
-                                    <td>CLOSED</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr className="flex justify-between">
-                                    <td>Friday</td>
-                                    <td>1:00pm - 9:00pm</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr className="flex justify-between">
-                                    <td>Saturday</td>
-                                    <td>10:00am - 10:00pm</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr className="flex justify-between">
-                                    <td>Sunday</td>
-                                    <td>1:00pm - 7:00pm</td>
-                                </tr>
-                            </tbody>
+                            {displayHours()}
                         </table>
                     </div>
                 </div>

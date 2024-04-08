@@ -39,9 +39,6 @@ const EventModal = ({ event, visible, onClose }) => {
         }
     };
 
-    // Assuming displayEventImg function exists elsewhere in your code
-    // Make sure to define or import it if you need to display event images
-
     if (popUpVisible) {
         return (
             <div
@@ -50,8 +47,7 @@ const EventModal = ({ event, visible, onClose }) => {
                 onClick={backdropClick}
             >
                 <div className="flex flex-col items-center bg-emerald-200 p-2 w-[55%] h-[65%] overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl text-center">
-                    {/* Assuming displayEventImg is correctly implemented */}
-                    {/* {displayEventImg(event.date)} */}
+
                     <h1 className=" flex flex-col text-[175%] my-[2%]">
                         {event.title}
                     </h1>
