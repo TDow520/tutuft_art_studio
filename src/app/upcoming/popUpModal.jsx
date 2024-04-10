@@ -6,10 +6,23 @@ import { useCart } from "../cart/CartContext";
 
 const EventModal = ({ event, visible, onClose }) => {
     const [popUpVisible, setPopUpVisible] = useState(visible);
+    const [addedToCart, setAddedToCart] = useState(false);
 
     useEffect(() => {
         setPopUpVisible(visible);
     }, [visible]);
+
+    // This will revert the added to cart message to the event details
+    useEffect(() => {
+        // Check if added to cart is true
+        if (addedToCart) {
+            // Set a timeout to revert the added to cart message to the event details
+            setTimeout(() => {
+                setAddedToCart(false);
+            }, 15000); // 1000 milliseconds = 1 second
+        }
+    
+    })
 
     // Destructure the addToCart function from useCart
     const { addToCart } = useCart();
@@ -29,8 +42,12 @@ const EventModal = ({ event, visible, onClose }) => {
     // Directly define the function to add to cart
     const handleAddToCart = () => {
         console.log(event);
-        addToCart(event);
-        // closeModal(); // Optionally close the modal upon adding to cart
+        addToCart(event); // Add the event to the cart
+
+        setAddedToCart(true); // Set added to cart to true
+
+        // subtract one from the available
+        event.available = event.available - 1;
         console.log("Event added to cart");
     };
 
@@ -51,39 +68,82 @@ const EventModal = ({ event, visible, onClose }) => {
                 onClick={backdropClick}
             >
                 <div className="flex flex-col items-center bg-emerald-200 p-2 w-[55%] h-[65%] overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl text-center">
-                    <h1 className=" flex flex-col text-[175%] my-[2%]">
-                        {event.title}
-                    </h1>
-                    <Image
-                        src={displayEventImg(event)}
-                        alt={event.title}
-                        width={200}
-                        height={50}
-                    />
-                    <h3>Time: 6:00pm - 8:00pm</h3>
-                    <br />
-                    <p>Cost: $25</p>
-                    <p>Supplies: Provided</p>
-                    <p>Age: 18+</p>
-                    <p className="flex">
-                        <div className="flex mr-2">
-                            Available Slots: 10/{event.slots}{" "}
+                    {/*Condidtaionally render the added to cart message*/}
+                    {addedToCart ? (
+                        <React.Fragment>
+                            {/* Reduce the text size shown on larger screens, hidden on smaller */}
+                            <div className="flex flex-col  py-[10%] items-center phone:hidden tablet:hidden laptop:text-[175%] dektop:text-[175%]">
+                                <Image
+                                    src={displayEventImg(event)}
+                                    alt={event.title}
+                                    width={200}
+                                    height={50}
+                                    className="align-middle"
+                                />
+                                <p className=" my-4">{event.title}</p>
+                                <p className="mb-4">
+                                    on {event.date} from {event.time}
+                                </p>
+                                <p>has been added to Cart</p>
+                            </div>
+                            {/* Reduce the text size shown on larger screens, hidden on smaller  */}
+                            <div className="flex flex-col py-[10%] items-center laptop:hidden desktop:hidden">
+                                <Image
+                                    src={displayEventImg(event)}
+                                    alt={event.title}
+                                    width={200}
+                                    height={50}
+                                    className="align-middle"
+                                />
+                                <p className=" my-4">{event.title}</p>
+                                <p className="mb-4">
+                                    on {event.date} from {event.time}
+                                </p>
+                                <p>has been added to Cart</p>
+                            </div>
+                        </React.Fragment>
+                    ) : (
+                        <div className="w-full h-full">
+                            <div className=" flex flex-col text-[175%] pt-[7%] items-center ">
+                                <h1 className="my-4">{event.title}</h1>
+                                <Image
+                                    src={displayEventImg(event)}
+                                    alt={event.title}
+                                    width={200}
+                                    height={50}
+                                    className="align-middle"
+                                />
+                                <h3 className="mt-6 mb-4">
+                                    Time: 6:00pm - 8:00pm
+                                </h3>
+                                <br />
+                                <p className="flex mb-2">
+                                    Cost: ${event.price}
+                                </p>
+                                <p className="flex mb-2">Age: 18+</p>
+                                <p className="flex mb-4">
+                                    <div className="flex mr-2">
+                                        Available Slots: {event.available}/
+                                        {event.slots}{" "}
+                                    </div>
+                                    <button onClick={handleAddToCart}>
+                                        <Image
+                                            src="/plus_sign.png"
+                                            width={25}
+                                            height={25}
+                                            alt="Book Event"
+                                        />
+                                    </button>
+                                </p>
+                            </div>
+                            <button
+                                className="mt-4 bg-emerald-50 text-emerald-700 p-2 rounded-md w-[150px]"
+                                onClick={closeModal}
+                            >
+                                Close
+                            </button>
                         </div>
-                        <button onClick={handleAddToCart}>
-                            <Image
-                                src="/plus_sign.png"
-                                width={25}
-                                height={25}
-                                alt="Book Event"
-                            />
-                        </button>
-                    </p>
-                    <button
-                        className="rounded-md bg-blue-500 w-[50%] text-white"
-                        onClick={closeModal}
-                    >
-                        Close
-                    </button>
+                    )}
                 </div>
             </div>
         );

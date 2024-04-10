@@ -22,8 +22,10 @@ export const CartProvider = ({ children }) => {
 
     const removeFromCart = (eventId) => {
         setCartItems((prevItems) =>
-            prevItems.filter((item) => item.id !== eventId)
+            prevItems.filter((item) => item.available !== eventId)
         );
+        // add 1 to the available count
+        item.available = item.available + 1;
     };
 
     const value = {

@@ -29,6 +29,14 @@ export default function NavLinks() {
         setShowMenu(false);
     };
 
+    const backdropClick = (e) => {
+        // Check if the click is on the backdrop itself and not on the modal
+        if (e.target.id === "backdrop") {
+            handleCloseMenu();
+        }
+    };
+
+
     return (
         <div className="flex text-emerald-600">
             <div className="border border-red-800 mr-[5%] gap-5">
@@ -54,23 +62,38 @@ export default function NavLinks() {
                     </Link>
                 ))}
                 <section className="flex flex-row justify-between gap-3 ">
-                    <AiOutlineShoppingCart className="flex border boder-slate-500 text-4xl laptop:hidden desktop:hidden " />
+
+                    <AiOutlineShoppingCart
+                        role="button"
+                        aria-label="Open shopping cart"
+                        className="flex border border-slate-500 text-4xl laptop:hidden desktop:hidden"
+                        href="/cart"
+                    />
                     <FiMenu
                         onClick={() => setShowMenu(true)}
-                        className="flex border boder-slate-500 text-4xl laptop:hidden desktop:hidden "
+                        role="button"
+                        aria-label="Open menu"
+                        className="flex border border-slate-500 text-4xl laptop:hidden desktop:hidden"
                     />
                 </section>
 
                 {/* This is the side menu section */}
                 {/* this needs to hide when showMenu is false */}
                 {showMenu && (
-                    <div className="fixed z-auto h-full w-screen laptop:hidden desktop:hidden bg-black/65 backdrop-blur-sm top-0 left-0 ">
-                        <section className="text-emerald-600 bg-white flex-col absolute right-0 top-0 h-screen p-8 gap-8 transition duration-300 ease-in-out w-56 phone:text-m">
+                    // This is the side menu section and it will have a scroll bar
+                    <div
+                        id="backdrop"
+                        className="fixed h-full w-screen laptop:hidden desktop:hidden bg-black/65 backdrop-blur-sm top-0 left-0 "
+                        onClick={backdropClick}
+                    >
+                        <section className="text-emerald-600 bg-white flex-col absolute right-0 top-0 h-screen p-8 gap-8 transition duration-300 ease-in-out w-56 phone:text-m overflow-y-scroll overflow-x-hidden">
                             {/* insert the x icon as abutton to close the menu */}
 
                             <AiOutlineClose
                                 onClick={() => setShowMenu(false)}
-                                className=" mt-[-15%] mb-8 ml-[85%] text-3xl cursor-pointer hover:text-bold"
+                                role="button"
+                                aria-label="Close menu"
+                                className="mt-[-15%] mb-8 ml-[85%] text-3xl cursor-pointer hover:text-bold"
                             />
 
                             {/* inputs the menu selections */}

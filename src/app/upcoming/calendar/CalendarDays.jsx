@@ -9,34 +9,43 @@ const Day = ({ date, day}) => {
             date: "2024-2-2",
             title: "Rug Tufting",
             slots: 20,
-            price: 45
+            available: 10,
+            price: 45,
+            time: "6:15 - 8:00 PM"
         },
         {
             id: 2,
             date: "2024-2-9",
             title: "Paint 'n' Sip",
             slots: 20,
-            price: 25
+            available: 10,
+            price: 25,
+            time: "6:00 - 8:00 PM"
         },
         {
             id: 3,
             date: "2024-2-16",
             title: "Rug Tufting",
             slots: 20,
-            price: 45
+            available: 10,
+            price: 45,
+            time: "6:15 - 8:00 PM"
         },
         {
             id: 4,
             date: "2024-2-14",
             title: "Rug Tufting",
             slots: 20,
-            price: 45
+            available: 10,
+            price: 45,
+            time: "6:15 - 8:00 PM"
         },
         {
             id: 5,
             date: "2024-3-14",
             title: "Paint 'n' Sip",
             slots: 20,
+            available: 10,
             price: 25
         },
         {
@@ -44,35 +53,45 @@ const Day = ({ date, day}) => {
             date: "2024-4-2",
             title: "Rug Tufting",
             slots: 20,
-            price: 45
+            available: 10,
+            price: 45,
+            time: "6:15 - 8:00 PM"
         },
         {
             id: 7,
             date: "2024-4-9",
             title: "Paint 'n' Sip",
             slots: 25,
-            price: 25
+            available: 10,
+            price: 25,
+            time: "6:00 - 8:00 PM"
         },
         {
             id: 8,
             date: "2024-4-16",
             title: "Rug Tufting",
             slots: 15,
-            price: 45
+            available: 10,
+            price: 45,
+            time: "6:15 - 8:00 PM"
         },
         {
             id: 9,
             date: "2024-5-14",
             title: "Rug Tufting",
             slots: 20,
-            price: 45
+            available: 10,
+            price: 45,
+            time: "6:15 - 8:00 PM"
         },
         {
             id: 10,
             date: "2024-3-14",
             title: "Paint 'n' Sip",
             slots: 12,
-            price: 25
+            available: 10,
+            price: 25,
+            time: "6:00 - 8:00 PM"
         }
     ];
 
