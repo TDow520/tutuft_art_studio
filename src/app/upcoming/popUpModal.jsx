@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useCart } from "../cart/cartContext";
+import { useCart } from "../cart/CartContext";
 
 const EventModal = ({ event, visible, onClose }) => {
     const [popUpVisible, setPopUpVisible] = useState(visible);
@@ -10,6 +10,9 @@ const EventModal = ({ event, visible, onClose }) => {
     useEffect(() => {
         setPopUpVisible(visible);
     }, [visible]);
+
+    // Destructure the addToCart function from useCart
+    const { addToCart } = useCart();
 
     const closeModal = () => {
         setPopUpVisible(false);
@@ -25,7 +28,8 @@ const EventModal = ({ event, visible, onClose }) => {
 
     // Directly define the function to add to cart
     const handleAddToCart = () => {
-        // addToCart(event);
+        console.log(event);
+        addToCart(event);
         // closeModal(); // Optionally close the modal upon adding to cart
         console.log("Event added to cart");
     };
@@ -47,7 +51,6 @@ const EventModal = ({ event, visible, onClose }) => {
                 onClick={backdropClick}
             >
                 <div className="flex flex-col items-center bg-emerald-200 p-2 w-[55%] h-[65%] overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl text-center">
-
                     <h1 className=" flex flex-col text-[175%] my-[2%]">
                         {event.title}
                     </h1>

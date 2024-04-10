@@ -4,7 +4,7 @@ import NavBanner from "./NavBanner"; // Navigation banner component
 import "./globals.css"; // Global styles
 import "leaflet/dist/leaflet.css"; // Leaflet for maps styling
 import { SpeedInsights } from "@vercel/speed-insights/next"; // Speed insights for performance
-import { CartProvider } from "./cart/cartContext"; // Context provider for cart functionality
+import { CartProvider } from "./cart/CartContext"; // Context provider for cart functionality
 
 const inter = Inter({ subsets: ["latin"] }); // Load Inter font with Latin subset
 const currentDate = new Date(); // Current date instance

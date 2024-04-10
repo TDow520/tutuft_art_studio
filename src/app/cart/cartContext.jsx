@@ -13,7 +13,11 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
 
     const addToCart = (event) => {
-        setCartItems((prevItems) => [...prevItems, event]);
+        setCartItems((prevItems) => {
+            const updatedItems = [...prevItems, event];
+            console.log(updatedItems);
+            return updatedItems;
+        });
     };
 
     const removeFromCart = (eventId) => {
