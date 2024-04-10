@@ -1,6 +1,6 @@
 // Importing necessary modules and components
 import { Inter } from "next/font/google"; // Google font
-import NavBanner from "./NavBanner"; // Navigation banner component
+import NavBanner from "./navbanner/NavBanner"; // Navigation banner component
 import "./globals.css"; // Global styles
 import "leaflet/dist/leaflet.css"; // Leaflet for maps styling
 import { SpeedInsights } from "@vercel/speed-insights/next"; // Speed insights for performance
