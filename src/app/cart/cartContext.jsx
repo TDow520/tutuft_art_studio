@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState } from "react";
 
 const CartContext = createContext();
 
-export function useCart() {
+export default function useCart() {
     return useContext(CartContext);
 }
 
