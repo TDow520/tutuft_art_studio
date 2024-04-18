@@ -19,7 +19,7 @@ const EventModal = ({ event, visible, onClose }) => {
             // Set a timeout to revert the added to cart message to the event details
             setTimeout(() => {
                 setAddedToCart(false);
-            }, 7000); // 1000 milliseconds = 1 second
+            }, 3000); // 1000 milliseconds = 1 second
         }
     
     })
