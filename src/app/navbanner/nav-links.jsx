@@ -53,7 +53,7 @@ export default function NavLinks() {
                 {links.map((link, index) => (
                     <Link key={index} href={link.href}>
                         <div
-                            className={`flex flex-row phone:hidden tablet:hidden m-1  drop-shadow-lg text-3xl ${
+                            className={`flex flex-row phone:hidden tablet:hidden m-1 drop-shadow-lg text-3xl ${
                                 currentPath === link.href ? "active" : ""
                             } hover:font-bold hover:text-emerald-800 hover:underline`}
                         >
@@ -62,18 +62,19 @@ export default function NavLinks() {
                     </Link>
                 ))}
                 <section className="flex flex-row justify-between gap-3 ">
+                    <Link href="/cart">
+                        <AiOutlineShoppingCart
+                            role="button"
+                            aria-label="Open shopping cart"
+                            className="flex border border-slate-500 text-4xl phone_land:hidden laptop:hidden desktop:hidden"
+                        />
+                    </Link>
 
-                    <AiOutlineShoppingCart
-                        role="button"
-                        aria-label="Open shopping cart"
-                        className="flex border border-slate-500 text-4xl laptop:hidden desktop:hidden"
-                        href="/cart"
-                    />
                     <FiMenu
                         onClick={() => setShowMenu(true)}
                         role="button"
                         aria-label="Open menu"
-                        className="flex border border-slate-500 text-4xl laptop:hidden desktop:hidden"
+                        className="flex border border-slate-500 text-4xl phone_land:hidden laptop:hidden desktop:hidden"
                     />
                 </section>
 

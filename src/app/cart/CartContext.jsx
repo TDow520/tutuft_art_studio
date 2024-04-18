@@ -20,12 +20,11 @@ export const CartProvider = ({ children }) => {
         });
     };
 
-    const removeFromCart = (eventId) => {
+    const removeFromCart = (eventID) => {
+        console.log(eventID);
         setCartItems((prevItems) =>
-            prevItems.filter((item) => item.available !== eventId)
+            prevItems.filter((item) => item.id !== eventID)
         );
-        // add 1 to the available count
-        item.available = item.available + 1;
     };
 
     const value = {

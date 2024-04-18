@@ -19,7 +19,7 @@ const EventModal = ({ event, visible, onClose }) => {
             // Set a timeout to revert the added to cart message to the event details
             setTimeout(() => {
                 setAddedToCart(false);
-            }, 15000); // 1000 milliseconds = 1 second
+            }, 7000); // 1000 milliseconds = 1 second
         }
     
     })
@@ -129,8 +129,8 @@ const EventModal = ({ event, visible, onClose }) => {
                                     <button onClick={handleAddToCart}>
                                         <Image
                                             src="/plus_sign.png"
-                                            width={25}
-                                            height={25}
+                                            width={30}
+                                            height={30}
                                             alt="Book Event"
                                         />
                                     </button>

@@ -6,7 +6,7 @@ const Day = ({ date, day}) => {
     const events = [
         {
             id: 1,
-            date: "2024-2-2",
+            date: "2024-5-2",
             title: "Rug Tufting",
             slots: 20,
             available: 10,
@@ -15,7 +15,7 @@ const Day = ({ date, day}) => {
         },
         {
             id: 2,
-            date: "2024-2-9",
+            date: "2024-5-9",
             title: "Paint 'n' Sip",
             slots: 20,
             available: 10,
@@ -24,7 +24,7 @@ const Day = ({ date, day}) => {
         },
         {
             id: 3,
-            date: "2024-2-16",
+            date: "2024-5-16",
             title: "Rug Tufting",
             slots: 20,
             available: 10,
@@ -33,7 +33,7 @@ const Day = ({ date, day}) => {
         },
         {
             id: 4,
-            date: "2024-2-14",
+            date: "2024-5-14",
             title: "Rug Tufting",
             slots: 20,
             available: 10,
@@ -78,7 +78,7 @@ const Day = ({ date, day}) => {
         {
             id: 9,
             date: "2024-5-14",
-            title: "Rug Tufting",
+            title: "Paint 'n' Sip",
             slots: 20,
             available: 10,
             price: 45,

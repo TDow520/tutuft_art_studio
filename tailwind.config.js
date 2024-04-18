@@ -16,8 +16,8 @@ module.exports = {
     screens: {
       'phone': { 'max': '640px' },
       'phone_land': { 'min': '641px', 'max': '813px' }, // 640px to 800px is phone landscape
-      'tablet': { 'min': '814px', 'max': '1024px' },
-      'laptop': { 'min': '1025px', 'max': '1450px' },
+      'tablet': { 'min': '814px', 'max': '1023px' },
+      'laptop': { 'min': '1024px', 'max': '1450px' },
       'desktop': { 'min': '1451px' }
     },
   },
