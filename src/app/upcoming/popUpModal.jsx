@@ -67,7 +67,7 @@ const EventModal = ({ event, visible, onClose }) => {
                 className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center overflow-y-auto"
                 onClick={backdropClick}
             >
-                <div className="flex flex-col items-center bg-emerald-200 p-2 w-[55%] h-[65%] overflow-y-auto rounded-xl text-yellow-700 font-bold text-xl text-center">
+                <div className="flex flex-col items-center bg-emerald-600 p-2 w-[55%] h-[65%] overflow-y-auto rounded-xl text-gold-600 font-bold text-xl text-center">
                     {/*Condidtaionally render the added to cart message*/}
                     {addedToCart ? (
                         <React.Fragment>

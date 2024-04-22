@@ -38,8 +38,8 @@ export default function NavLinks() {
 
 
     return (
-        <div className="flex text-emerald-600">
-            <div className="border border-red-800 mr-[5%] gap-5">
+        <div className="flex text-emerald-600 mt-[1%]">
+            <div className=" mr-[5%] gap-5 bg-slate-200 rounded-xl">
                 <Link href="/">
                     <Image
                         src="/logo.png"
@@ -49,7 +49,7 @@ export default function NavLinks() {
                     />
                 </Link>
             </div>
-            <nav className="flex border py-[1%] mr-[3%] justify-around border-black w-[75%]">
+            <nav className="flex  py-[1%] mr-[3%] justify-around w-[75%] bg-slate-200 rounded-lg">
                 {links.map((link, index) => (
                     <Link key={index} href={link.href}>
                         <div

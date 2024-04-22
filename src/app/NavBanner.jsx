@@ -6,7 +6,7 @@ import Image from "next/image"; // Next.js image component
 // Navigation banner component
 export default function navBanner() {
     return (
-        <div className="border border-red-800 ">
+        <div className="">
             {/* Inserting navigation links component */}
             <NavLinks />
         </div>

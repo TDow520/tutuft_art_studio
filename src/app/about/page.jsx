@@ -80,8 +80,10 @@ const About = () => {
 
             {/* this is where the user can send an email to the owner */}
             <div className="flex flex-row justify-evenly">
-                <div className="flex flex-col phone:w-[100%] w-[70%] border border-black">
-                    <h2 className="text-2xl font-bold text-center">CONTACT</h2>
+                <div className="flex flex-col phone:w-[100%] w-[70%] ">
+                    <h2 className="text-2xl font-bold text-center text-yellow-200">
+                        CONTACT
+                    </h2>
                     <form className="flex flex-col bg-slate-400 bg-opacity-40 p-[2%] rounded-md my-[3%] text-left">
                         <label htmlFor="name">Name:</label>
                         <input
@@ -89,7 +91,7 @@ const About = () => {
                             id="name"
                             name="name"
                             placeholder="Your name.."
-                            className="text-black font-semibold bg-slate-300 bg-opacity-100 p-[1%]"
+                            className="text-black font-semibold bg-slate-300 bg-opacity-100 p-[1%] rounded-md"
                             value={formData.name}
                             onChange={handleChange}
                         />
@@ -100,7 +102,7 @@ const About = () => {
                             name="email"
                             placeholder="Your email.."
                             value={formData.email}
-                            className="text-black font-semibold bg-slate-300 bg-opacity-100 p-[1%]"
+                            className="text-black font-semibold bg-slate-300 bg-opacity-100 p-[1%] rounded-md"
                             onChange={handleChange}
                         />
                         <label htmlFor="message">Message:</label>
@@ -109,12 +111,12 @@ const About = () => {
                             name="message"
                             placeholder="Write something.."
                             style={{ height: "100px" }}
-                            className="text-black font-semibold bg-slate-300 bg-opacity-100 p-[1%]"
+                            className="text-black font-semibold bg-slate-300 bg-opacity-100 p-[1%] rounded-md"
                             value={formData.message}
                             onChange={handleChange}
                         ></textarea>
                         <input
-                            className="bg-yellow-300 w-[25%] my-[1%] mx-auto rounded-sm "
+                            className="bg-gold-500 w-[15%] my-[1%] mx-auto text-emerald-700 font-bold rounded-md bg-opacity-70 hover:bg-opacity-100"
                             type="submit"
                             value="Submit"
                             onClick={handleSubmit}
@@ -122,8 +124,8 @@ const About = () => {
                     </form>
                 </div>
             </div>
-            <div className="flex flex-row phone:flex-col justify-evenly bg-emerald-900 py-[1%] w-[100%] border border-dashed border-teal-200">
-                <div className="leaflet-wrap">
+            <div className="flex flex-row phone:flex-col justify-evenly bg-emerald-900 py-[1%] w-[100%]">
+                <div className="leaflet-wrap my-auto ml-[1%]">
                     <MapComponent />
                 </div>
                 <div className="flex flex-col my-auto w-[100%] text-yellow-200 ml-[1%]">
@@ -141,7 +143,7 @@ const About = () => {
                         </h2>
                         <table className="font-semibold text-xl phone:text-md ">
                             <tbody>
-                                <tr className="flex justify-between">
+                                <tr className="flex justify-between mb-[2%]">
                                     <td>Day</td>
                                     <td>Hours</td>
                                 </tr>

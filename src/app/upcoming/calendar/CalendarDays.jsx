@@ -99,11 +99,11 @@ const Day = ({ date, day}) => {
     const eventsForDay = events.filter((event) => event.date === date);
 
     return (
-        <div className="day border border-double border-purple-700  pb-[5%] w-[14.29%] bg-green-300 text-white ">
+        <div className="day border border-double border-violet-800  pb-[5%] w-[14.29%] bg-emerald-400 text-slate-200 ">
             <div
                 // If the view is in phone view then only use the abbrv version of the days
                 
-                className="day-number bg-gray-200 w-[100%] text-left "
+                className="day-number bg-slate-400 w-[100%] text-left "
                 style={
                     day === "Saturday" || day === "Sunday"
                         ? { color: "red" }

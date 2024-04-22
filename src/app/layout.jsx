@@ -23,23 +23,23 @@ const RootLayout = ({ children }) => {
     return (
         <CartProvider>
             <html lang="en">
-                <body className={` ${inter.className} phone:h-[100vh] h-[125%] ` }>
-                    <div className="flex flex-col items-center text-center bg-gradient-to-b to-green-600 from-slate-100">
-                        <header className="w-full bg-white z-50">
+                <body
+                    className={` ${inter.className} bg-gradient-to-b to-emerald-950 from-emerald-100`}
+                >
+                    <div className="flex flex-col items-center text-center">
+                        <header className="w-[95%] z-50 h-[2.5%] ">
                             <NavBanner />
                         </header>
-                        This is the main container
-                        <div className="flex flex-col h-[95%] my-[5%] w-[95%] border border-yellow-200 text-center items-center">
+                        {/* This is the main container */}
+                        <div className="flex flex-col h-[92.5%] my-[2%] w-[95%] text-center items-center">
                             {children}
                             <SpeedInsights />
                         </div>
-                        <footer className="flex flex-col h-[5%] my-[5%] text-center justify-center border border-red-800 text-sm desktop:text-[100%] laptop:w-[55%]">
-                            <p className="my-2">
+                        <footer className="flex flex-col h-[5%] my-[5%] text-center justify-center text-sm desktop:text-[100%] laptop:w-[55%]">
+                            <p className="my-1">
                                 Brought to you by TuTuft, LLC.
                             </p>
-                            <p>
-                                Design by TD Solutions,LLC.
-                            </p>
+                            <p className="my-1">Design by TD Solutions,LLC.</p>
                             copyright &copy; {year}
                         </footer>
                     </div>

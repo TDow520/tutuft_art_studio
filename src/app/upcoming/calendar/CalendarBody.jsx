@@ -26,11 +26,11 @@ const CalendarBody = ({
                 {daysOfWeek.map((day, index) => (
                     <React.Fragment key={day}>
                         {/* Full day name shown on larger screens, hidden on smaller */}
-                        <div className="border border-double border-purple-700 py-2 w-[25%] bg-yellow-200 text-black text-center font-bold phone:hidden tablet:hidden md:block">
+                        <div className="border border-double border-violet-700 py-2 w-[26%] bg-yellow-300 text-black text-center font-bold phone_land:hidden phone:hidden tablet:hidden md:block">
                             {day}
                         </div>
                         {/* Short day name shown on smaller screens */}
-                        <div className="border border-double border-purple-700 py-2 w-[25%] bg-yellow-200 text-black text-center font-bold laptop:hidden desktop:hidden">
+                        <div className="border border-double border-purple-700 py-2 w-[25%] bg-yellow-300 text-black text-center font-bold laptop:hidden desktop:hidden">
                             {shortDays[index]}
                         </div>
                     </React.Fragment>

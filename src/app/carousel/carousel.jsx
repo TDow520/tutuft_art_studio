@@ -88,7 +88,7 @@ const Carousel = () => {
 
     const carouselImg = () => {
         return imgs.map((image, index) => {
-            return <div key={index} className="flex flex-col items-center justify-center border border-dotted border-blue-800">
+            return <div key={index} className="flex flex-col items-center justify-center px-1">
                 <Image
                     src={image.src}
                     alt={image.alt}
@@ -96,18 +96,13 @@ const Carousel = () => {
                     height={image.height}
                 />
                 <div>
-                    <h3>{image.alt} label</h3>
-                    <p>
-                        Nulla vitae elit libero, a pharetra augue mollis
-                        interdum.
-                    </p>
                 </div>
             </div>
         })
     };
 
     return (
-        <div className="border border-dashed border-red-600 phone:w-[85%] w-[75%] laptop:block desktop:block">
+        <div className="phone:w-[85%] w-[75%] laptop:block desktop:block bg-slate-400 bg-opacity-10">
             <Slider
                 autoplay
                 autoplaySpeed={3000}
