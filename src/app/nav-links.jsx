@@ -14,8 +14,7 @@ const links = [
     { name: "Home", href: "/" },
     { name: "Events", href: "/upcoming" },
     { name: "About", href: "/about" },
-    { name: "Gallery", href: "/gallery" },
-    { name: 'Cart', href: '/cart'}
+    { name: "Gallery", href: "/gallery" }
     // Additional links can be added here
 ];
 
@@ -38,8 +37,8 @@ export default function NavLinks() {
 
 
     return (
-        <div className="flex text-emerald-600 mt-[1%]">
-            <div className=" mr-[5%] gap-5 bg-slate-200 rounded-xl">
+        <div className="flex text-emerald-600 mt-[1%] z-[1000] ">
+            <div className=" mr-[5%] gap-5 bg-slate-200 rounded-xl justify-start">
                 <Link href="/">
                     <Image
                         src="/logo.png"
@@ -49,9 +48,9 @@ export default function NavLinks() {
                     />
                 </Link>
             </div>
-            <nav className="flex  py-[1%] mr-[3%] justify-around w-[75%] bg-slate-200 rounded-lg">
+            <nav className="flex py-[1%] mx-auto justify-around w-[50%] bg-slate-200 rounded-lg">
                 {links.map((link, index) => (
-                    <Link key={index} href={link.href}>
+                    <Link key={index} href={link.href} className={`px-2`}>
                         <div
                             className={`flex flex-row phone:hidden tablet:hidden m-1 drop-shadow-lg text-3xl ${
                                 currentPath === link.href ? "active" : ""
@@ -66,7 +65,7 @@ export default function NavLinks() {
                         <AiOutlineShoppingCart
                             role="button"
                             aria-label="Open shopping cart"
-                            className="flex border border-slate-500 text-4xl phone_land:hidden laptop:hidden desktop:hidden"
+                            className="flex border border-slate-500 text-4xl tablet:hidden laptop:hidden desktop:hidden"
                         />
                     </Link>
 
@@ -74,7 +73,7 @@ export default function NavLinks() {
                         onClick={() => setShowMenu(true)}
                         role="button"
                         aria-label="Open menu"
-                        className="flex border border-slate-500 text-4xl phone_land:hidden laptop:hidden desktop:hidden"
+                        className="flex border border-slate-500 text-4xl tablet:hidden laptop:hidden desktop:hidden"
                     />
                 </section>
 
@@ -84,7 +83,7 @@ export default function NavLinks() {
                     // This is the side menu section and it will have a scroll bar
                     <div
                         id="backdrop"
-                        className="fixed h-full w-screen laptop:hidden desktop:hidden bg-black/65 backdrop-blur-sm top-0 left-0 "
+                        className="fixed h-full w-screen tabet:hidden laptop:hidden desktop:hidden bg-black/65 backdrop-blur-sm top-0 left-0 "
                         onClick={backdropClick}
                     >
                         <section className="text-emerald-600 bg-white flex-col absolute right-0 top-0 h-screen p-8 gap-8 transition duration-300 ease-in-out w-56 phone:text-m overflow-y-scroll overflow-x-hidden">
@@ -118,6 +117,15 @@ export default function NavLinks() {
                     </div>
                 )}
             </nav>
+            <div className="flex bg-slate-200 justtify-end w-[5%] rounded-lg hover:drop-shadow-lg phone:hidden phone_land:hidden tablet:hidden laptop:block desktop:block">
+                <Link href="/cart">
+                    <AiOutlineShoppingCart
+                        role="button"
+                        aria-label="Open shopping cart"
+                        className="flex mx-auto my-6 text-5xl"
+                    />
+                </Link>
+            </div>
         </div>
     );
 };

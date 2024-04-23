@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "date": "2024-5-2",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg"
+    },
+    {
+        "id": 2,
+        "date": "2024-5-9",
+        "title": "Paint 'n' Sip",
+        "slots": 20,
+        "available": 10,
+        "price": 25,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg"
+    },
+    {
+        "id": 3,
+        "date": "2024-5-16",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg"
+    },
+    {
+        "id": 4,
+        "date": "2024-5-14",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg"
+    },
+    {
+        "id": 5,
+        "date": "2024-3-14",
+        "title": "Paint 'n' Sip",
+        "slots": 20,
+        "available": 10,
+        "price": 25,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg"
+    },
+    {
+        "id": 6,
+        "date": "2024-4-2",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg"
+    },
+    {
+        "id": 7,
+        "date": "2024-4-9",
+        "title": "Paint 'n' Sip",
+        "slots": 25,
+        "available": 10,
+        "price": 25,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg"
+    },
+    {
+        "id": 8,
+        "date": "2024-4-16",
+        "title": "Rug Tufting",
+        "slots": 15,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg"
+    },
+    {
+        "id": 9,
+        "date": "2024-5-14",
+        "title": "Paint 'n' Sip",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg"
+    },
+    {
+        "id": 10,
+        "date": "2024-3-14",
+        "title": "Paint 'n' Sip",
+        "slots": 12,
+        "available": 10,
+        "price": 25,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg"
+    },
+    {
+        "id": 11,
+        "date": "2024-5-17",
+        "title": "Candle Making",
+        "slots": 12,
+        "available": 10,
+        "price": 45,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/candles.jpeg"
+    },
+    {
+        "id": 12,
+        "date": "2024-5-24",
+        "title": "Perfume Making",
+        "slots": 12,
+        "available": 10,
+        "price": 45,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/perfumes.jpeg"
+    }
+]

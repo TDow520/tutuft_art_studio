@@ -54,9 +54,13 @@ const EventModal = ({ event, visible, onClose }) => {
     // function to display event images by the event title
     const displayEventImg = (event) => {
         if (event.title === "Rug Tufting") {
-            return "/rug_tuft.jpeg";
+            return event.pic;
         } else if (event.title === "Paint 'n' Sip") {
-            return "/paint-n-sip.jpeg";
+            return event.pic;
+        } else if (event.title === "Candle Making") {
+            return event.pic;
+        } else if (event.title === "Perfume Making") {
+            return event.pic;
         }
     };
 
@@ -64,7 +68,7 @@ const EventModal = ({ event, visible, onClose }) => {
         return (
             <div
                 id="backdrop"
-                className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center overflow-y-auto"
+                className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center overflow-y-auto z-[500]"
                 onClick={backdropClick}
             >
                 <div className="flex flex-col items-center bg-emerald-600 p-2 w-[55%] h-[65%] overflow-y-auto rounded-xl text-gold-600 font-bold text-xl text-center">

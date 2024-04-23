@@ -83,6 +83,18 @@ const Carousel = () => {
             alt: "Ninth slide",
             width: 1000,
             height: 1000
+        },
+        {
+            src: "/perfumes.jpeg",
+            alt: "Tenth slide",
+            width: 1000,
+            height: 1000
+        },
+        {
+            src: "/candles.jpeg",
+            alt: "Eleventh slide",
+            width: 1000,
+            height: 1000
         }
     ];
 

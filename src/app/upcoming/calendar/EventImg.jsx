@@ -59,6 +59,42 @@ const EventImage = ({ date, events }) => {
                             </div>
                         );
                         break;
+                    case "Candle Making":
+                        images.push(
+                            <div
+                                key={`${date}-${index}`}
+                                className="event-image-item flex flex-col items-center mt-[5%]"
+                            >
+                                <Image
+                                    src="/candles.jpeg"
+                                    alt="Candle Making"
+                                    width={150}
+                                    height={150}
+                                    onClick={() => showModal(event)}
+                                    className="hover:drop-shadow-2xl rounded-md cursor-pointer"
+                                />
+                                <p className="underline">Candle Making</p>
+                            </div>
+                        );
+                        break;
+                    case "Perfume Making":
+                        images.push(
+                            <div
+                                key={`${date}-${index}`}
+                                className="event-image-item flex flex-col items-center mt-[5%]"
+                            >
+                                <Image
+                                    src="/perfumes.jpeg"
+                                    alt="Perfume Making"
+                                    width={150}
+                                    height={150}
+                                    onClick={() => showModal(event)}
+                                    className="hover:drop-shadow-2xl rounded-md cursor-pointer"
+                                />
+                                <p className="underline">Perfume Making</p>
+                            </div>
+                        );
+                        break;
                     default:
                         return null;
                 }
