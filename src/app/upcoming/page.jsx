@@ -93,7 +93,7 @@ const Upcoming = () => {
     };
 
     return (
-        <div className="items-center w-[80%]">
+        <div className="items-center w-[90%] border">
             <div className="flex flex-col  w-full mt-[2%]">
                 {/* Calendar display */}
                 {/* <div className="flex border border-violet-700 w-full phone:h-[20.5%] tablet:h-[18.5%] laptop:h-[15%]">

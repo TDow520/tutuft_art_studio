@@ -25,7 +25,7 @@ const EventImage = ({ date, events }) => {
                         images.push(
                             <div
                                 key={`${date}-${index}`}
-                                className="event-image-item flex flex-col items-center mt-[5%]"
+                                className="event-image-item flex flex-col items-center mt-[5%] text-sm"
                             >
                                 <Image
                                     src="/rug_tuft.jpeg"
@@ -35,7 +35,9 @@ const EventImage = ({ date, events }) => {
                                     onClick={() => showModal(event)}
                                     className="hover:drop-shadow-2xl rounded-md"
                                 />
-                                <p className="underline">Rug Tufting</p>
+                                <p className="underline phone:hidden phone_land:hidden">
+                                    Rug Tufting
+                                </p>
                             </div>
                         );
                         break;
@@ -53,7 +55,7 @@ const EventImage = ({ date, events }) => {
                                     onClick={() => showModal(event)}
                                     className="hover:drop-shadow-2xl rounded-md cursor-pointer"
                                 />
-                                <p className="underline">
+                                <p className="underline phone:hidden phone_land:hidden">
                                     Paint &apos;n&apos; Sip
                                 </p>
                             </div>
@@ -73,7 +75,7 @@ const EventImage = ({ date, events }) => {
                                     onClick={() => showModal(event)}
                                     className="hover:drop-shadow-2xl rounded-md cursor-pointer"
                                 />
-                                <p className="underline">Candle Making</p>
+                                <p className="underline phone:hidden phone_land:hidden">Candle Making</p>
                             </div>
                         );
                         break;
@@ -91,7 +93,9 @@ const EventImage = ({ date, events }) => {
                                     onClick={() => showModal(event)}
                                     className="hover:drop-shadow-2xl rounded-md cursor-pointer"
                                 />
-                                <p className="underline">Perfume Making</p>
+                                <p className="underline phone:hidden phone_land:hidden">
+                                    Perfume Making
+                                </p>
                             </div>
                         );
                         break;

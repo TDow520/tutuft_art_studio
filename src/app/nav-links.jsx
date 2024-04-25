@@ -37,7 +37,7 @@ export default function NavLinks() {
 
 
     return (
-        <div className="flex text-emerald-600 mt-[1%] z-[1000] ">
+        <div className="flex text-emerald-600 mt-[1%] z-[1000] justify-between phone:gap-[25%]">
             <div className=" mr-[5%] gap-5 bg-slate-200 rounded-xl justify-start">
                 <Link href="/">
                     <Image
@@ -48,24 +48,22 @@ export default function NavLinks() {
                     />
                 </Link>
             </div>
-            <nav className="flex py-[1%] mx-auto justify-around w-[50%] bg-slate-200 rounded-lg">
+            <nav className="flex phone:flex-col phone_land:flex-col phone:h-[10%] tablet:my-auto bg-slate-200 rounded-lg desktop:w-[55%] laptop:w-[650px]">
                 {links.map((link, index) => (
-                    <Link key={index} href={link.href} className={`px-2`}>
+                    <Link key={index} href={link.href} className={`desktop:w-[25%] desktop:px-[10%] m-auto laptop:px-[4%] laptop:text-[75%]`}>
                         <div
-                            className={`flex flex-row phone:hidden tablet:hidden m-1 drop-shadow-lg text-3xl ${
-                                currentPath === link.href ? "active" : ""
-                            } hover:font-bold hover:text-emerald-800 hover:underline`}
+                            className={`flex flex-row phone:hidden phone_land:hidden tablet:hidden m-1 drop-shadow-lg text-3xl hover:font-bold hover:text-emerald-800 hover:underline`}
                         >
                             {link.name}
                         </div>
                     </Link>
                 ))}
-                <section className="flex flex-row justify-between gap-3 ">
+                <section className="flex w-full gap-3">
                     <Link href="/cart">
                         <AiOutlineShoppingCart
                             role="button"
                             aria-label="Open shopping cart"
-                            className="flex border border-slate-500 text-4xl tablet:hidden laptop:hidden desktop:hidden"
+                            className="flex border border-slate-500 text-4xl laptop:hidden desktop:hidden"
                         />
                     </Link>
 
@@ -73,7 +71,7 @@ export default function NavLinks() {
                         onClick={() => setShowMenu(true)}
                         role="button"
                         aria-label="Open menu"
-                        className="flex border border-slate-500 text-4xl tablet:hidden laptop:hidden desktop:hidden"
+                        className="flex border border-slate-500 text-4xl laptop:hidden desktop:hidden"
                     />
                 </section>
 

@@ -62,7 +62,7 @@ const About = () => {
 
     return (
         <div className="flex flex-col h-[95%]">
-            <div className="mx-auto p-[2%] my-[2%] bg-emerald-900 phone:w-[100%] tablet:w-[65%] text-yellow-200">
+            <div className="mx-auto p-[2%] my-[2%] bg-emerald-900/65 phone:w-[100%] tablet:w-[65%] text-yellow-200 rounded-lg">
                 <h1 className="font-extrabold text-3xl text-center mb-[2%]">
                     ALL ABOUT TUTUFT
                 </h1>
@@ -124,7 +124,8 @@ const About = () => {
                     </form>
                 </div>
             </div>
-            <div className="flex flex-row phone:flex-col justify-evenly bg-emerald-900 py-[1%] w-[100%]">
+            {/* Location and hours of operation */}
+            <div className="flex flex-row phone:flex-col justify-evenly bg-emerald-900/65 py-[1%] w-[100%] rounded-lg">
                 <div className="leaflet-wrap my-auto ml-[1%]">
                     <MapComponent />
                 </div>

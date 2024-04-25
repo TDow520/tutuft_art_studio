@@ -17,8 +17,7 @@ const Day = ({ date, day }) => {
 
 
     return (
-        <div className="day m-2  pb-[5%] w-[14.29%] bg-emerald-700 bg-opacity-50 text-slate-200 ">
-
+        <div className="day m-2 pb-[5%] w-[14.29%] bg-emerald-700 bg-opacity-50 text-slate-200 ">
             <div
                 // If the view is in phone view then only use the abbrv version of the days
 
@@ -30,12 +29,10 @@ const Day = ({ date, day }) => {
                 }
             >
                 {day}
-
             </div>
             <div className="events">
                 {/* if the event  date is = to the current date month then display the evnt image */}
                 {<EventImage date={date} events={eventsForDay} />}
-                
             </div>
         </div>
     );

@@ -39,7 +39,7 @@ const CalendarBody = ({currentMonthIndex, currentYear, displayDays = () => []}) 
                             {day}
                         </div>
                         {/* Short day name shown on smaller screens */}
-                        <div className="py-2 w-[25%] bg-gold-300 text-black text-center font-bold laptop:hidden desktop:hidden">
+                        <div className="phone:mx-[1%] mx-2 py-2 w-[25%] bg-gold-300 text-black text-center font-bold laptop:hidden desktop:hidden">
                             {shortDays[index]}
                         </div>
                     </React.Fragment>

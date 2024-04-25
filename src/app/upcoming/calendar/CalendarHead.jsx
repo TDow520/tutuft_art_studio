@@ -49,7 +49,7 @@ const CalendarHead = ({
             >
                 Prev Month <br /> &lt;&lt;
             </button>
-            <h2 className="bg-emerald-800 bg-opacity-75  text-center phone:w-[215px] phone_land:w-[275px] tablet:w-[325px] py-[6%] font-bold laptop:hidden desktop:hidden">
+            <h2 className="bg-emerald-800 bg-opacity-75  text-center phone:w-[215px] phone_land:w-[275px] tablet:w-[325px] py-[6%] px-[4%] font-bold laptop:hidden desktop:hidden">
                 {`${shortMons[currentMonthIndex]} ${currentYear}`}
             </h2>
             <button
