@@ -37,16 +37,25 @@ const CalendarBody = ({ currentMonthIndex, currentYear, displayDays = () => [] }
                         <div className="mx-2 py-2 w-[26%] bg-gold-300 text-black text-center font-bold md:block">
                             {day}
                         </div>
-                        <div className="mx-2 py-2 w-[25%] bg-gold-300 text-black text-center font-bold laptop:hidden">
+                        <div className="mx-2 py-2 w-[25%] bg-gold-300 text-black text-center font-bold laptop:hidden desktop:hidden">
                             {shortDays[index]}
                         </div>
                     </React.Fragment>
                 ))}
             </div>
             {displayDays().map((week, weekIndex) => (
-                <div key={weekIndex} className="week flex flex-row w-full font-semibold">
+                <div
+                    key={weekIndex}
+                    className="week flex flex-row w-full font-semibold"
+                >
                     {week.map((day, dayIndex) => (
-                        <Day key={`${weekIndex}-${dayIndex}`} date={`${currentYear}-${currentMonthIndex + 1}-${day}`} day={day} />
+                        <Day
+                            key={`${weekIndex}-${dayIndex}`}
+                            date={`${currentYear}-${
+                                currentMonthIndex + 1
+                            }-${day}`}
+                            day={day}
+                        />
                     ))}
                 </div>
             ))}
