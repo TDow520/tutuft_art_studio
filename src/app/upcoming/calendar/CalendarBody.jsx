@@ -34,7 +34,7 @@ const CalendarBody = ({ currentMonthIndex, currentYear, displayDays = () => [] }
             <div className="days-of-week flex flex-row w-full">
                 {daysOfWeek.map((day, index) => (
                     <React.Fragment key={day}>
-                        <div className="mx-2 py-2 w-[26%] bg-gold-300 text-black text-center font-bold md:block">
+                        <div className="mx-2 py-2 w-[26%] bg-gold-300 text-black text-center font-bold phone:hidden phone_land:hidden tablet:hidden">
                             {day}
                         </div>
                         <div className="mx-2 py-2 w-[25%] bg-gold-300 text-black text-center font-bold laptop:hidden desktop:hidden">
