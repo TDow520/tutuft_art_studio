@@ -1,162 +1,66 @@
 "use client"
 
 import React from "react";
-import Image from "next/image";
+import { useState } from "react";
+import PicLib from "./picLib/page";
+import Sketch from "./sketches/sketch";
+import TakeHomeKit from "./take_home/page";
 
 const GalleryPage = () => {
+    const [showPicLib, setShowPicLib] = useState(true);
+    const [showSketch, setShowSketches] = useState(false);
+    const [showTakeHome, setShowTakeHome] = useState(false);
+
+    const togglePicLib = () => {
+        setShowPicLib(true);
+        setShowSketches(false);
+        setShowTakeHome(false);
+    };
+
+    const toggleSketch = () => {
+        setShowSketches(true);
+        setShowPicLib(false);
+        setShowTakeHome(false);
+    };
+
+    const toggleTakeHome = () => {
+        setShowTakeHome(true);
+        setShowPicLib(false);
+        setShowSketches(false);
+    };
+
+    //  have tabs that are linked to the gallery image, sketches, and take home kits
+    //  these tabs will change the content of the section to display the appropriate content
     return (
-        <div className="h-full w-full border">
-            <h1>Gallery</h1>
-            <p>Gallery page content goes here...</p>
-            <h1>Sketches</h1>
-            {/* Display images in a grid */}
-
-            {/* If the screen is a phone or phone_land then display images as three images in a row*/}
-            <section className="h-full hidden phone:flex phone_land:flex  phone:justify-between w-full border">
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0021.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[33%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/rug_tuft.jpeg"
-                        width={1000}
-                        height={1000}
-                        className="w-[33%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0023.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[33%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-            </section>
-
-            {/* If the screen is a  tablet or laptop display 5 images in a row*/}
-            <section className="h-full hidden tablet:flex tablet:justify-between w-full border">
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0021.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[20%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0022.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[20%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0023.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[20%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0022.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[20%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0023.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[20%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-            </section>
-
-            {/* if the screen is a desktop display 6 images in a row */}
-            <section className="h-full hidden laptop:flex desktop:flex desktop:justify-between w-full border">
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0021.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[16.6%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0022.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[16.6%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0023.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[16.6%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0022.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[16.6%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0023.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[16.6%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-
-                <div className="flex flex-col items-center">
-                    <Image
-                        src="/IMG_0023.jpg"
-                        width={1000}
-                        height={1000}
-                        className="w-[16.6%]"
-                    />
-                    <h3>image title</h3>
-                </div>
-            </section>
+        <div className="w-full ">
+            <div className="flex flex-row justify-right gap-3 mt-5  text-[150%]">
+                <button
+                    onClick={togglePicLib}
+                    className="bg-slate-500/60 hover:rotate-[25deg] hover:-translate-y-3 rounded-tr-md rounded-tl-md p-1"
+                >
+                    Gallery
+                </button>
+                <button
+                    onClick={toggleSketch}
+                    className="bg-slate-500/60 hover:rotate-[25deg] hover:-translate-y-3 rounded-tr-md rounded-tl-md p-1"
+                >
+                    Sketches
+                </button>
+                <button
+                    onClick={toggleTakeHome}
+                    className="bg-slate-500/60 hover:rotate-[25deg] hover:-translate-y-6 rounded-tr-md rounded-tl-md p-1"
+                >
+                    Take Home Kits
+                </button>
+            </div>
+            <div className="h-full w-full bg-slate-500/50 ">
+                {/* immediately load the gallery images */}
+                {showPicLib && <PicLib />}
+                {/* load the sketches when the button is clicked */}
+                {showSketch && <Sketch />}
+                {/* load the take home kits */}
+                {showTakeHome && <TakeHomeKit />}
+            </div>
         </div>
     );
 };

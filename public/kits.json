@@ -1,0 +1,45 @@
+[
+    {
+        "id": 1,
+        "title": "Rug Tufting Kit",
+        "available": 10,
+        "price": 57,
+        "pic": "/rug_tuft.jpeg"
+    },
+    {
+        "id": 2,
+        "title": "Romance Paint Basket",
+        "available": 10,
+        "price": 45,
+        "pic": "/paint-n-sip.jpeg"
+    },
+    {
+        "id": 4,
+        "title": "Sunflower Paint Basket",
+        "available": 10,
+        "price": 47,
+        "pic": "/rug_tuft.jpeg"
+    },
+    {
+        "id": 5,
+        "title": "Date Night Paint Basket",
+        "slots": 20,
+        "available": 10,
+        "price": 63,
+        "pic": "/paint-n-sip.jpeg"
+    },
+    {
+        "id": 11,
+        "title": "Candle Making",
+        "available": 50,
+        "price": 25,
+        "pic": "/candles.jpeg"
+    },
+    {
+        "id": 12,
+        "title": "Perfume Making",
+        "available": 32,
+        "price": 35,
+        "pic": "/perfumes.jpeg"
+    }
+]

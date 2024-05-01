@@ -41,7 +41,10 @@ const Cart = () => {
 
                                 {/* Item details and cart manipulation section */}
                                 <section className="flex flex-col w-full my-auto">
-                                    <p className="p-[2%]">Date: {item.date}</p>
+                                    {/* only display the date if there is data in the field */}
+                                    {item.date && (
+                                        <p className="p-[2%]">Date: {item.date}</p>
+                                    )}
                                     <p className="p-[2%]">
                                         Price: ${item.price.toFixed(2)}
                                     </p>

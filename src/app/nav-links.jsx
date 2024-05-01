@@ -47,7 +47,7 @@ export default function NavLinks() {
                     />
                 </Link>
             </div>
-            <nav className="flex phone:flex-col phone_land:flex-col phone:h-[10%] mb-[60px] bg-slate-200 rounded-lg desktop:w-[55%] laptop:w-[650px] border border-black">
+            <nav className="flex phone:flex-col phone_land:flex-col phone:h-[10%] mb-[60px] bg-slate-200 rounded-lg desktop:w-[55%] laptop:w-[650px]">
                 {links.map((link, index) => (
                     <Link
                         key={index}
