@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useCart } from "./CartContext"; // Importing useCart custom hook from the CartContext
+import Image from "next/image";
 
 const Cart = () => {
     // Accessing the cart items and functions for manipulating the cart
@@ -32,9 +33,11 @@ const Cart = () => {
                                     <h3 className="text-xl font-semibold mx-auto w-[90%]">
                                         {item.title}
                                     </h3>
-                                    <img
+                                    <Image
                                         src={item.pic}
                                         alt={item.title}
+                                        height={1000}
+                                        width={1000}
                                         className="w-[90%] mx-auto"
                                     />
                                 </section>
@@ -43,7 +46,9 @@ const Cart = () => {
                                 <section className="flex flex-col w-full my-auto">
                                     {/* only display the date if there is data in the field */}
                                     {item.date && (
-                                        <p className="p-[2%]">Date: {item.date}</p>
+                                        <p className="p-[2%]">
+                                            Date: {item.date}
+                                        </p>
                                     )}
                                     <p className="p-[2%]">
                                         Price: ${item.price.toFixed(2)}
@@ -81,9 +86,11 @@ const Cart = () => {
                                     <h3 className="text-xl font-semibold justify-left my-auto mx-[2%] w-[45%]">
                                         {item.title}
                                     </h3>
-                                    <img
+                                    <Image
                                         src={item.pic}
                                         alt={item.title}
+                                        height={1000}
+                                        width={1000}
                                         className="w-[25%] mx-auto"
                                     />
                                 </section>

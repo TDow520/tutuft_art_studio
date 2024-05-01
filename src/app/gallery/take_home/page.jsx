@@ -20,7 +20,7 @@ const TakeHomeKit = () => {
         <div className="">
             <section className="flex flex-wrap justify-evenly border">
                 {kits.map((kit, index) => (
-                    <div className="w-1/5 flex-none p-2 border">
+                    <div className="w-1/5 flex-none p-2 border" key={index}>
                         <KitImage kit={kit} index={index} />
                     </div>
                 ))}

@@ -1,64 +1,52 @@
-import React, { useState, useEffect} from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Day from "./CalendarDays";
 
-const CalendarBody = ({currentMonthIndex, currentYear, displayDays = () => []}) => {
+const CalendarBody = ({ currentMonthIndex, currentYear, displayDays = () => [] }) => {
     const [daysOfWeek, setDaysOfWeek] = useState([]);
+    const [shortDays, setShortDays] = useState([]);
 
     // Full version of days
     useEffect(() => {
         fetch("/daysOfWeek.json")
-            .then((response) => response.json())
-            .then((data) => {
+            .then(response => response.json())
+            .then(data => {
                 const days = data.map(item => Object.values(item)[0]);
                 setDaysOfWeek(days);
+                console.log("daysOfWeek", days); // Logs right after setting state
             });
-            console.log("daysOfWeek", daysOfWeek);
-    }, []);
+    }, []); // Empty dependency array means this runs only on component mount
 
     // Short version of days
-    const [shortDays, setShortDays] = useState([]);
-
     useEffect(() => {
         fetch("/shortDays.json")
-            .then((response) => response.json())
-            .then((data) => {
-                const days = data.map((item) => Object.values(item)[0]);
+            .then(response => response.json())
+            .then(data => {
+                const days = data.map(item => Object.values(item)[0]);
                 setShortDays(days);
-            }); 
-            console.log("shortDays", shortDays);
-    }, []);
-
+                console.log("shortDays", days); // Logs right after setting state
+            });
+    }, []); // Same here, runs only on component mount
 
     return (
         <>
             <div className="days-of-week flex flex-row w-full">
                 {daysOfWeek.map((day, index) => (
                     <React.Fragment key={day}>
-                        {/* Full day name shown on larger screens, hidden on smaller */}
-                        <div className="mx-2 py-2 w-[26%] bg-gold-300 text-black text-center font-bold phone_land:hidden phone:hidden tablet:hidden md:block">
+                        <div className="mx-2 py-2 w-[26%] bg-gold-300 text-black text-center font-bold md:block">
                             {day}
                         </div>
-                        {/* Short day name shown on smaller screens */}
-                        <div className="phone:mx-[1%] mx-2 py-2 w-[25%] bg-gold-300 text-black text-center font-bold laptop:hidden desktop:hidden">
+                        <div className="mx-2 py-2 w-[25%] bg-gold-300 text-black text-center font-bold laptop:hidden">
                             {shortDays[index]}
                         </div>
                     </React.Fragment>
                 ))}
             </div>
-
             {displayDays().map((week, weekIndex) => (
-                <div
-                    key={weekIndex}
-                    className="week flex flex-row w-full font-semibold"
-                >
+                <div key={weekIndex} className="week flex flex-row w-full font-semibold">
                     {week.map((day, dayIndex) => (
-                        <Day
-                            key={dayIndex}
-                            date={`${currentYear}-${
-                                currentMonthIndex + 1
-                            }-${day}`}
-                            day={day}
-                        />
+                        <Day key={`${weekIndex}-${dayIndex}`} date={`${currentYear}-${currentMonthIndex + 1}-${day}`} day={day} />
                     ))}
                 </div>
             ))}

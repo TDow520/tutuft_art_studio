@@ -20,7 +20,7 @@ const Sketch = () => {
         <div className="">
             <section className="flex flex-wrap justify-evenly border">
                 {sketchs.map((sketch, index) => (
-                    <div className="w-1/5 flex-none p-2 border">
+                    <div className="w-1/5 flex-none p-2 border" key={index}>
                         <SketchImg sketch={sketch} index={index} />
                     </div>
                 ))}
