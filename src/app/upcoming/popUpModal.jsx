@@ -41,7 +41,7 @@ const EventModal = ({ event, visible, onClose }) => {
 
     // Directly define the function to add to cart
     const handleAddToCart = () => {
-        console.log(event);
+        // console.log(event);
         addToCart(event); // Add the event to the cart
 
         setAddedToCart(true); // Set added to cart to true
@@ -50,6 +50,31 @@ const EventModal = ({ event, visible, onClose }) => {
         event.available = event.available - 1;
         console.log("Event added to cart");
     };
+    // console.log("time length", event.start.length);
+
+    // convert event.start and end to 12 hour format
+    const convertTime = (time) => {
+        // Check if the time is in 24 hour format
+        if (time.length === 8) {
+            // Split the time into hours and minutes and seconds
+            const [hours, minutes, seconds] = time.split(":");
+            // Check if the hours is greater than 12
+            if (parseInt(hours) > 12) {
+                // Subtract 12 from the hours
+                return `${parseInt(hours) - 12}:${minutes} PM`;
+            }
+            // Check if the hours is equal to 0
+            if (parseInt(hours) === 0) {
+                // Add 12 to the hours
+                return `12:${minutes} AM`;
+            }
+            // Return the time in 12 hour format
+            return `${hours}:${minutes} AM`;
+        }
+        // Return the time in 12 hour format
+        return time;
+    };
+
 
     if (popUpVisible) {
         return (
@@ -65,30 +90,34 @@ const EventModal = ({ event, visible, onClose }) => {
                             {/* Reduce the text size shown on larger screens, hidden on smaller */}
                             <div className="flex flex-col my-auto items-center phone:hidden phone_land:hidden tablet:hidden text-[150%]">
                                 <Image
-                                    src={event.pic}
-                                    alt={event.title}
+                                    src={event.pic.url}
+                                    alt={event.pic.name}
                                     width={200}
                                     height={50}
                                     className="align-middle"
                                 />
-                                <p className=" my-4">{event.title}</p>
+                                <p className=" my-4">{event.pic.name}</p>
                                 <p className="mb-4">
-                                    on {event.date} from {event.time}
+                                    on {event.date} from{" "}
+                                    {convertTime(event.start)} to{" "}
+                                    {convertTime(event.end)}
                                 </p>
                                 <p>has been added to Cart</p>
                             </div>
                             {/* Reduce the text size shown on larger screens, hidden on smaller  */}
                             <div className="flex flex-col my-auto items-center laptop:hidden desktop:hidden">
                                 <Image
-                                    src={event.pic}
-                                    alt={event.title}
+                                    src={event.pic.url}
+                                    alt={event.pic.name}
                                     width={200}
                                     height={50}
                                     className="align-middle"
                                 />
-                                <p className=" my-4">{event.title}</p>
+                                <p className=" my-4">{event.pic.name}</p>
                                 <p className="mb-4">
-                                    on {event.date} from {event.time}
+                                    on {event.date} from{" "}
+                                    {convertTime(event.start)} to{" "}
+                                    {convertTime(event.end)}
                                 </p>
                                 <p>has been added to Cart</p>
                             </div>
@@ -102,31 +131,33 @@ const EventModal = ({ event, visible, onClose }) => {
                                 x
                             </button>
                             <div className=" flex flex-col phone:text-[100%] phone_land:text-[115%] text-[175%] items-center ">
-                                <h1 className="my-4">{event.title}</h1>
+                                <h1 className="my-4">{event.pic.name}</h1>
                                 <Image
-                                    src={event.pic}
-                                    alt={event.title}
+                                    src={event.pic.url}
+                                    alt={event.pic.name}
                                     width={200}
                                     height={50}
                                     className="align-middle"
                                 />
                                 <h3 className="mt-6 mb-4">
-                                    Time: {event.time}
+                                    Time: {convertTime(event.start)} -{" "}
+                                    {convertTime(event.end)}
                                 </h3>
                                 <h2 className="py-[5%]">
-                                        Description:
-                                        <p className="underline">{event.description}</p>
+                                    Description:
+                                    <p className="underline">
+                                        {event.description}
+                                    </p>
                                 </h2>
                                 <p className="flex mb-2">
                                     Cost: ${event.price}
                                 </p>
                                 <p className="flex mb-2">Age: 18+</p>
-                                <p className="flex flex-col mb-4">
+                                <div className="flex flex-col mb-4">
                                     <div className="flex mr-2">
-                                        Available Slots: {event.available}/
-                                        {event.slots}{" "}
+                                        Available Slots: {event.slot}
                                     </div>
-                                </p>
+                                </div>
                             </div>
                             <section className="flex flex-row justify-center">
                                 <button

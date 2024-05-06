@@ -14,7 +14,7 @@ const CalendarBody = ({ currentMonthIndex, currentYear, displayDays = () => [] }
             .then(data => {
                 const days = data.map(item => Object.values(item)[0]);
                 setDaysOfWeek(days);
-                console.log("daysOfWeek", days); // Logs right after setting state
+                // console.log("daysOfWeek", days); // Logs right after setting state
             });
     }, []); // Empty dependency array means this runs only on component mount
 
@@ -25,7 +25,7 @@ const CalendarBody = ({ currentMonthIndex, currentYear, displayDays = () => [] }
             .then(data => {
                 const days = data.map(item => Object.values(item)[0]);
                 setShortDays(days);
-                console.log("shortDays", days); // Logs right after setting state
+                // console.log("shortDays", days); // Logs right after setting state
             });
     }, []); // Same here, runs only on component mount
 

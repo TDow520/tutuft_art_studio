@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: ".env.local" });
 import fs from "fs";
 import path from "path";
-import supabase from "../src/app/supabaseClient.js";
+import supabase from "../src/lib/supabaseClient.js";
 
 const publicDir = path.join(__dirname, "public");
 

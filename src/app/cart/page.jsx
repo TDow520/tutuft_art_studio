@@ -15,7 +15,8 @@ const Cart = () => {
     );
     const tax = subtotal * 0.08; // Calculating an 8% tax on the subtotal
     const total = subtotal + tax; // Total cost including tax
-
+    
+    console.log(items)
     return (
         <div className="flex flex-col items-center my-4 text-yellow-200 bg-opacity-40 w-full">
             <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
@@ -31,11 +32,11 @@ const Cart = () => {
                                 {/* Item title and image section */}
                                 <section className="flex flex-col justify-between w-full">
                                     <h3 className="text-xl font-semibold mx-auto w-[90%]">
-                                        {item.title}
+                                        {item.pic.name}
                                     </h3>
                                     <Image
-                                        src={item.pic}
-                                        alt={item.title}
+                                        src={item.pic.url}
+                                        alt={item.pic.name}
                                         height={1000}
                                         width={1000}
                                         className="w-[90%] mx-auto"
@@ -84,11 +85,11 @@ const Cart = () => {
                                 {/* Item title and image section */}
                                 <section className="flex justify-start w-[50%]">
                                     <h3 className="text-xl font-semibold justify-left my-auto mx-[2%] w-[45%]">
-                                        {item.title}
+                                        {item.pic.name}
                                     </h3>
                                     <Image
-                                        src={item.pic}
-                                        alt={item.title}
+                                        src={item.pic.url}
+                                        alt={item.pic.name}
                                         height={1000}
                                         width={1000}
                                         className="w-[25%] mx-auto"

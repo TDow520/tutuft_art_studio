@@ -14,13 +14,21 @@ const EventImage = ({ date, events }) => {
         setPopUpVisible(true);
     };
 
+    // console.log("Evnets:",events);
     const displayEventImg = () => {
         const images = [];
-        const filteredEvents = events.filter((event) => event.date === date);
+        const filteredEvents = events.filter((event) => {
+            // console.log("event.date", event.date)
+            // console.log("date", date)
+            return event.date === date
+        });
+        // console.log("filteredEvents", filteredEvents)
 
+        
         filteredEvents.forEach((event, index) => {
             if (event.date === date) {
-                switch (event.title) {
+                // console.log("event title", event.pic.name);
+                switch (event.pic.name) {
                     case "Rug Tufting":
                         images.push(
                             <div
@@ -28,7 +36,7 @@ const EventImage = ({ date, events }) => {
                                 className="event-image-item flex flex-col items-center mt-[5%] text-sm"
                             >
                                 <Image
-                                    src="/rug_tuft.jpeg"
+                                    src={event.pic.url}
                                     alt="Rug Tufting"
                                     width={150}
                                     height={150}
@@ -41,7 +49,7 @@ const EventImage = ({ date, events }) => {
                             </div>
                         );
                         break;
-                    case "Paint 'n' Sip":
+                    case "Paint-n-Sip":
                         images.push(
                             <div
                                 key={`${date}-${index}`}
@@ -75,7 +83,9 @@ const EventImage = ({ date, events }) => {
                                     onClick={() => showModal(event)}
                                     className="hover:drop-shadow-2xl rounded-md cursor-pointer"
                                 />
-                                <p className="underline phone:hidden phone_land:hidden">Candle Making</p>
+                                <p className="underline phone:hidden phone_land:hidden">
+                                    Candle Making
+                                </p>
                             </div>
                         );
                         break;
