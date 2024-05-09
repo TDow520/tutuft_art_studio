@@ -1,105 +1,151 @@
 "use client";
 
-// CartContext.js
-import React, { createContext,useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 
-// Creating a context for cart operations to be accessible across components
+// Creating a context to handle cart functionalities across components.
 export const CartContext = createContext();
 
+// Provider component that manages cart state and provides it to child components.
 export const CartProvider = ({ children }) => {
-    // State to track the items in the cart
+    // State for managing cart items.
     const [cartItems, setCartItems] = useState([]);
 
+    // Function to update slots in the database, returns a promise.
+    const updateSlots = (id, available) => {
+        return new Promise((resolve, reject) => {
+            if (available === null) {
+                console.error("Attempted to update slots with invalid value:", available);
+                reject("Invalid available value");
+                return;
+            }
 
-    //modify the slots of teh event in the database when the event is added/removed to the cart or the quantity is changed
-    useEffect(() => {
-        cartItems.forEach(item => {
-            fetch("/api/events", {
+            // PATCH request to update the availability of slots.
+            fetch("api/events/updateSlots", {
                 method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ id: item.id, event_slot: item.availableSlots }),
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id, available })
             })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Updated slots in the database:", data);
-                })
-                .catch((error) => {
-                    console.error("Error updating slots:", error);
-                });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to update slots: " + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    console.error("Error updating slots:", data.error);
+                    reject(data.error);
+                } else {
+                    console.log("Updated slots successfully:", data);
+                    resolve(data);
+                }
+            })
+            .catch(error => {
+                console.error("Error during update operation:", error);
+                reject(error);
+            });
         });
-    }, [cartItems]);
+    };
 
+    // Function to add items to the cart.
+    const addToCart = (event, onSuccessAdd) => {
+        setCartItems(prevItems => {
+             // Check if the event already exists in the cart
+            const existingItemIndex = prevItems.findIndex(item => item.event_id === event.event_id);
+            
+            if (existingItemIndex >= 0) {
+                // If the item already exists in the cart, increase its quantity and decrease available slots.
+                const updatedItems = [...prevItems];
+                const existingItem = updatedItems[existingItemIndex];
+                
+                // check if the item is available is greater than 0
+                if (existingItem.available > 0) {
+                    updatedItems[existingItemIndex] = {
+                        ...existingItem,
+                        quantity: existingItem.quantity + 1,
+                        available: Math.max(0, existingItem.available - 1)
+                    };
+                    updateSlots(event.event_id, event.available - 1)
+                        .then(() => {
+                            if (onSuccessAdd) {
+                                onSuccessAdd(event.event_id);
+                            }
+                        })
+                        .catch(error => console.error("Update failed", error));
+                }
 
-    // Function to add an event to the cart
-const addToCart = (event) => {
-    setCartItems((prevItems) => {
-        const existingItemIndex = prevItems.findIndex(
-            (item) => item.event_id === event.event_id
-        );
-        if (existingItemIndex >= 0) {
-            // If the item already exists in the cart, increase its quantity
-            const updatedItems = [...prevItems];
-
-            updatedItems[existingItemIndex] = {
-                ...updatedItems[existingItemIndex],
-                quantity: updatedItems[existingItemIndex].quantity + 1,
-                availableSlots: Math.max(
-                    0,
-                    updatedItems[existingItemIndex].availableSlots - 1
-                )
-            };
-            return updatedItems;
-        } else {
-            // If the item does not exist, add it to the cart with quantity initialized to 1
-            return [
-                ...prevItems,
-                {
+                return updatedItems;
+            } else {
+                // If the item does not exist, add it to the cart with quantity initialized to 1
+                const newItem = {
                     ...event,
                     quantity: 1,
-                    availableSlots: event.slot - 1
-                }
-            ];
+                    available: event.available - 1
+                    
+                };
+                updateSlots(event.event_id, newItem.available)
+                    .then(() => {
+                        if (onSuccessAdd) {
+                            onSuccessAdd(event.event_id);
+                        }
+                    })
+                    .catch((error) => console.error("Update failed", error));
+
+                return [...prevItems,newItem];
+            }
+        });
+    };
+
+    // Function to remove items from the cart.
+const removeFromCart = (event) => {
+    setCartItems(prevItems => {
+        const existingItemIndex = prevItems.findIndex(item => item.event_id === event.event_id);
+
+        if (existingItemIndex === -1) {
+            console.error("Item not found in cart.");
+            return prevItems; // Early return if item is not found
         }
+
+        const existingItem = prevItems[existingItemIndex];
+        let updatedItems;
+
+        if (existingItem.quantity === 1) {
+            // Remove the item entirely from the cart if this is the last one
+            updatedItems = prevItems.filter(item => item.event_id !== existingItem.event_id);
+        } else {
+            // Decrease the quantity and increase available slots
+            updatedItems = prevItems.map(item =>
+                item.event_id === existingItem.event_id ? {
+                    ...item,
+                    quantity: item.quantity - 1,
+                    available: item.available + 1 // Ensure available slots are increased
+                } : item
+            );
+        }
+
+        // Always update the available slots in the database regardless of quantity
+        const updatedAvailable = existingItem.available + 1;
+        updateSlots(existingItem.event_id, updatedAvailable)
+            .then(() => {
+                console.log("Database updated successfully with available slots:", updatedAvailable);
+            })
+            .catch(error => {
+                console.error("Error updating database:", error);
+            });
+
+        return updatedItems;
     });
 };
 
-    // Function to remove an event from the cart
-    const removeFromCart = (event) => {
-        setCartItems((prevItems) => {
-            // Locate the item in the cart
-            const existingItem = prevItems.find((item) => item.id === event.event_id);
-            if (existingItem.quantity === 1) {
+    // Providing the context value which components can consume.
+    const value = { items: cartItems, addToCart, removeFromCart };
 
-                // If only one item left, remove it entirely from the cart
-                return prevItems.filter((item) => item.id !== event.event_id);
-            } else {
-
-                // If more than one, decrease the quantity and increase available slots
-                return prevItems.map((item) =>
-                    item.id === event.event_id ? { ...item, quantity: item.quantity - 1, availableSlots: item.slot + 1 }
-                    : item
-                );
-            }
-        });
-        console.log(event.slot);
-    };
-
-    // Context value that will be passed to components that consume the CartContext
-    const value = {
-        items: cartItems,
-        addToCart,
-        removeFromCart
-    };
-
-    // Provider component that passes the cart context down to children components
     return (
         <CartContext.Provider value={value}>{children}</CartContext.Provider>
     );
 };
 
-// Hook to use the cart context easily
+// Custom hook to access the cart context.
 export const useCart = () => {
     const context = useContext(CartContext);
     if (context === undefined) {

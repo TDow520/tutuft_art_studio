@@ -33,19 +33,22 @@ export default function EventMod() {
                             key={event.event_id}
                             className="flex flex-wrap w-full m-1 border border-double font-bold"
                         >
-                            <p className="w-1/6">{event.event_id}</p>
-                            <p className="w-1/6">{event.title}</p>
-                            <p className="w-1/6">Date: {event.date}</p>
+                            <p className="w-[14.2857%]">{event.event_id}</p>
+                            <p className="w-[14.2857%]">{event.title}</p>
+                            <p className="w-[14.2857%]">Date: {event.date}</p>
                             {/* convert event time from 18:00:00 to 6:00 pm */}
 
-                            <p className="w-1/6">Time: {event.time}</p>
-                            <p className="w-1/6">
-                                Slots available: {event.slot}
+                            <p className="w-[14.2857%]">Time: {event.time}</p>
+                            <p className="w-[14.2857%]">Available: {event.available}</p>
+                            <p className="w-[14.2857%]">Slots: {event.slot}</p>
+                            <p className="w-[14.2857%]">
+                                Price: ${event.price}
                             </p>
-                            <p className="w-1/6">Price: ${event.price}</p>
                             <div className="flex flex-row w-full my-4">
                                 Description:
-                                <p className="ml-3 text-left">{event.description}</p>
+                                <p className="ml-3 text-left">
+                                    {event.description}
+                                </p>
                             </div>
                         </li>
                     ))}

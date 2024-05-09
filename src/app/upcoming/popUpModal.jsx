@@ -45,9 +45,6 @@ const EventModal = ({ event, visible, onClose }) => {
         addToCart(event); // Add the event to the cart
 
         setAddedToCart(true); // Set added to cart to true
-
-        // subtract one from the available
-        event.available = event.available - 1;
         console.log("Event added to cart");
     };
     // console.log("time length", event.start.length);
@@ -155,23 +152,28 @@ const EventModal = ({ event, visible, onClose }) => {
                                 <p className="flex mb-2">Age: 18+</p>
                                 <div className="flex flex-col mb-4">
                                     <div className="flex mr-2">
-                                        Available Slots: {event.slot}
+                                            Available Slots: {event.available}
+                                            {console.log("event available", event.available)}
                                     </div>
                                 </div>
                             </div>
                             <section className="flex flex-row justify-center">
-                                <button
-                                    onClick={handleAddToCart}
-                                    className="text-black text-[150%] bg-slate-200 rounded-md hover:bg-slate-300 hover:drop-shadow-2xl w-[25%] justify-center tablet:hidden laptop:hidden desktop:hidden"
-                                >
-                                    +
-                                </button>
-                                <button
-                                    className="phone:hidden  phone_land:hidden justify-center mt-4 bg-emerald-50 text-emerald-700 p-2 rounded-md w-[150px] flex hover:bg-slate-300 hover:drop-shadow-2xl"
-                                    onClick={handleAddToCart}
-                                >
-                                    Add to Cart
-                                </button>
+                                {event.available > 0 && (
+                                        <>
+                                            <button
+                                                onClick={handleAddToCart}
+                                                className="text-black text-[150%] bg-slate-200 rounded-md hover:bg-slate-300 hover:drop-shadow-2xl w-[25%] justify-center tablet:hidden laptop:hidden desktop:hidden"
+                                            >
+                                                +
+                                            </button>
+                                            <button
+                                                className="phone:hidden phone_land:hidden justify-center mt-4 bg-emerald-50 text-emerald-700 p-2 rounded-md w-[150px] flex hover:bg-slate-300 hover:drop-shadow-2xl"
+                                                onClick={handleAddToCart}
+                                            >
+                                                Add to Cart
+                                            </button>
+                                        </>
+                                    )}
                             </section>
                         </div>
                     )}
