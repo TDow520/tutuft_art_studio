@@ -10,6 +10,7 @@ const EventImage = ({ date, events }) => {
 
     // New function to handle image clicks
     const showModal = (event) => {
+        console.log("Event clicked:", event);
         setSelectedEvent(event);
         setPopUpVisible(true);
     };

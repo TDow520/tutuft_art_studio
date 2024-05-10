@@ -5,10 +5,14 @@ const Day = ({ date, day }) => {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        fetch("/api/events") // Ensure this matches your actual API endpoint
+        fetch("/api/events/", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        }) // Ensure this matches your actual API endpoint
+        
             .then((response) => response.json())
             .then((data) => {
-                // console.log("Data fetched from API:", data);
+                console.log("Data fetched from API:", data);
                 setEvents(data);
             })
 
@@ -35,10 +39,9 @@ const Day = ({ date, day }) => {
     // Filter the events for the current day
     const eventsForDay = events.filter((event) => {
         return event.date == formatDate(date);
-
     });
 
-    // console.log("Events for day:", eventsForDay);
+    console.log("Events for day:", eventsForDay);
 
     return (
         <div className="day m-1 pb-[5%] w-[17.29%] bg-emerald-700 bg-opacity-50 text-slate-200 ">
