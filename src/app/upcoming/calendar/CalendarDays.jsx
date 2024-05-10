@@ -12,7 +12,7 @@ const Day = ({ date, day }) => {
         
             .then((response) => response.json())
             .then((data) => {
-                console.log("Data fetched from API:", data);
+                // console.log("Data fetched from API:", data);
                 setEvents(data);
             })
 
@@ -26,7 +26,9 @@ const Day = ({ date, day }) => {
 
     // Function to format the date
     function formatDate(dateString) {
+        console.log("Date string:", dateString);
         const date = new Date(dateString);
+        console.log("Date object:", date);
         let month = "" + (date.getMonth() + 1);
         let day = "" + date.getDate();
         const year = date.getFullYear();
@@ -38,10 +40,13 @@ const Day = ({ date, day }) => {
     }
     // Filter the events for the current day
     const eventsForDay = events.filter((event) => {
+        console.log("Event date:", event.date);
         return event.date == formatDate(date);
     });
 
-    console.log("Events for day:", eventsForDay);
+    // console.log("Events for day:", eventsForDay);
+    // console.log("Day:", day);
+    
 
     return (
         <div className="day m-1 pb-[5%] w-[17.29%] bg-emerald-700 bg-opacity-50 text-slate-200 ">
