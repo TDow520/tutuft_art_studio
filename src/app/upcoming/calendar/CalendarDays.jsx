@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EventImage from "./EventImg";
+import { format, isValid, parseISO } from "date-fns";
 
 const Day = ({ date, day }) => {
     const [events, setEvents] = useState([]);
@@ -26,17 +27,27 @@ const Day = ({ date, day }) => {
 
     // Function to format the date
     function formatDate(dateString) {
-        const date = new Date(dateString);
+        if (!dateString || dateString.split('-').length < 1) {
+            console.log("Received an incomplete date: ", dateString);
+            return null;
+        }
+        const [year, month, day] = dateString.split('-');
 
-        let month = "" + (date.getMonth() + 1);
-        let day = "" + date.getDate();
-        const year = date.getFullYear();
+        //pad the month and day with 0 if they are less than 10
+        const formattedMonth = month.length === 1 ? `0${month}` : month;
+        const formattedDay = day.length === 1 ? `0${day}` : day;
 
-        if (month.length < 2) month = "0" + month;
-        if (day.length < 2) day = "0" + day;
+        const formattedDate = `${year}-${formattedMonth}-${formattedDay}`;
 
-        return [year, month, day].join("-");
+        const parseDate = parseISO(formattedDate);
+        if (!isValid(parseDate)) { 
+            console.log("Parsed an Invalid date: ", dateString);
+            return null;
+        }
+
+        return format(parseDate, "yyyy-MM-dd");
     }
+
     // Filter the events for the current day
     const eventsForDay = events.filter((event) => {
         console.log("Event date:", event.date);
