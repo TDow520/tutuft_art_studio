@@ -12,7 +12,7 @@ const Day = ({ date, day }) => {
         
             .then((response) => response.json())
             .then((data) => {
-                console.log("Data fetched from API:", data);
+                // console.log("Data fetched from API:", data);
                 setEvents(data);
             })
 
@@ -22,7 +22,7 @@ const Day = ({ date, day }) => {
             });
     }, []); // Empty dependency array means this effect runs once after the initial render
     
-    console.log("Events:", events);
+    // console.log("Events:", events);
 
     // Function to format the date
     function formatDate(dateString) {
@@ -34,7 +34,7 @@ const Day = ({ date, day }) => {
 
         if (month.length < 2) month = "0" + month;
         if (day.length < 2) day = "0" + day;
-        // console.log("Formatted date:", [year, month, day].join("-"));
+
         return [year, month, day].join("-");
     }
     // Filter the events for the current day
@@ -42,11 +42,10 @@ const Day = ({ date, day }) => {
         // console.log("Event date:", event.date);
         // console.log("Formatted date:", formatDate(date));
 
-        return (
-            event.date == formatDate(date));
+        return event.date === formatDate(date);
     });
-
-    // console.log("Events for day:", eventsForDay);
+    console.log("Events:", events);
+    console.log("Events for day:", eventsForDay);
     // console.log("Day:", day);
     
 
