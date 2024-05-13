@@ -41,6 +41,13 @@ const Day = ({ date, day }) => {
     const eventsForDay = events.filter((event) => {
         console.log("Event date:", event.date);
         console.log("Formatted date:", formatDate(date));
+        // typeof data  for should be a string
+        if (typeof event.date === "string") {
+            console.log("Event date is a string");
+        }
+        if (typeof formatDate(date) === "string") {
+            console.log("Formatted date is a string");
+        }
 
         return event.date === formatDate(date);
     });
