@@ -7,7 +7,7 @@ export default function EventMod() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("/api/events") // Ensure this matches your actual API endpoint
+        fetch("/api/events")
             .then((response) => response.json())
             .then((data) => {
                 console.log("Data fetched from API:", data);

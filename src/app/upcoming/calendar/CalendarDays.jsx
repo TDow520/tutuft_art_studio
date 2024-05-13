@@ -9,7 +9,7 @@ const Day = ({ date, day }) => {
         fetch("/api/events/", {
             method: "GET",
             headers: { "Content-Type": "application/json" },
-        }) // Ensure this matches your actual API endpoint
+        })
         
             .then((response) => response.json())
             .then((data) => {
