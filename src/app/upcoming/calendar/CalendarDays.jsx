@@ -39,13 +39,13 @@ const Day = ({ date, day }) => {
     }
     // Filter the events for the current day
     const eventsForDay = events.filter((event) => {
-        // console.log("Event date:", event.date);
-        // console.log("Formatted date:", formatDate(date));
+        console.log("Event date:", event.date);
+        console.log("Formatted date:", formatDate(date));
 
         return event.date === formatDate(date);
     });
-    console.log("Events:", events);
-    console.log("Events for day:", eventsForDay);
+    // console.log("Events:", events);
+    // console.log("Events for day:", eventsForDay);
     // console.log("Day:", day);
     
 
