@@ -12,7 +12,7 @@ const Day = ({ date, day }) => {
         
             .then((response) => response.json())
             .then((data) => {
-                // console.log("Data fetched from API:", data);
+                console.log("Data fetched from API:", data);
                 setEvents(data);
             })
 
@@ -20,7 +20,7 @@ const Day = ({ date, day }) => {
                 console.error("Error fetching events:", error);
 
             });
-    }, []); // Empty dependency array means this effect runs once after the initial render
+    }, [events]); // Empty dependency array means this effect runs once after the initial render
     
     console.log("Events:", events);
 
@@ -46,7 +46,7 @@ const Day = ({ date, day }) => {
             event.date == formatDate(date));
     });
 
-    console.log("Events for day:", eventsForDay);
+    // console.log("Events for day:", eventsForDay);
     // console.log("Day:", day);
     
 
