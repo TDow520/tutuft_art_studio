@@ -46,7 +46,7 @@ const Day = ({ date, day }) => {
             event.date == formatDate(date));
     });
 
-    // console.log("Events for day:", eventsForDay);
+    console.log("Events for day:", eventsForDay);
     // console.log("Day:", day);
     
 
