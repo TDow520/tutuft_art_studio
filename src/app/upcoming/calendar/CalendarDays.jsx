@@ -20,7 +20,7 @@ const Day = ({ date, day }) => {
                 console.error("Error fetching events:", error);
 
             });
-    }, [events]); // Empty dependency array means this effect runs once after the initial render
+    }, []); // Empty dependency array means this effect runs once after the initial render
     
     console.log("Events:", events);
 
