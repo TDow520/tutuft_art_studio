@@ -26,9 +26,8 @@ const Day = ({ date, day }) => {
 
     // Function to format the date
     function formatDate(dateString) {
-        console.log("Date string:", dateString);
         const date = new Date(dateString);
-        console.log("Date object:", date);
+
         let month = "" + (date.getMonth() + 1);
         let day = "" + date.getDate();
         const year = date.getFullYear();
@@ -40,7 +39,7 @@ const Day = ({ date, day }) => {
     }
     // Filter the events for the current day
     const eventsForDay = events.filter((event) => {
-        console.log("Event date:", event.date);
+        // console.log("Event date:", event.date);
         return event.date == formatDate(date);
     });
 

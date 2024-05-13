@@ -1,0 +1,178 @@
+[
+    {
+        "id": 1,
+        "date": "2024-5-2",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg",
+        "description": "Step into the world of textile art with our Rug Tufting Workshop! Armed with a tufting gun and an array of colorful yarns, you’ll transform a blank canvas into a vibrant rug that expresses your style. This hands-on workshop not only teaches you a new craft but also lets you take home a masterpiece that's both personal and practical. Perfect for decorating your space or as a heartfelt gift."
+    },
+    {
+        "id": 2,
+        "date": "2024-5-9",
+        "title": "Paint 'n' Sip",
+        "slots": 20,
+        "available": 10,
+        "price": 25,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg",
+        "description": "Unleash your inner artist at our Paint 'n' Sip Event! With a brush in one hand and a wine glass in the other, lose yourself in the joy of painting in a fun, supportive environment. Whether you’re a seasoned painter or a curious newbie, this event promises laughter, relaxation, and a chance to create something beautiful. Come for the paint, stay for the pinot, and leave with your own canvas masterpiece!"
+    },
+    {
+        "id": 3,
+        "date": "2024-5-16",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg",
+        "description": "Step into the world of textile art with our Rug Tufting Workshop! Armed with a tufting gun and an array of colorful yarns, you’ll transform a blank canvas into a vibrant rug that expresses your style. This hands-on workshop not only teaches you a new craft but also lets you take home a masterpiece that's both personal and practical. Perfect for decorating your space or as a heartfelt gift."
+    },
+    {
+        "id": 4,
+        "date": "2024-5-14",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg",
+        "description": "Step into the world of textile art with our Rug Tufting Workshop! Armed with a tufting gun and an array of colorful yarns, you’ll transform a blank canvas into a vibrant rug that expresses your style. This hands-on workshop not only teaches you a new craft but also lets you take home a masterpiece that's both personal and practical. Perfect for decorating your space or as a heartfelt gift."
+    },
+    {
+        "id": 5,
+        "date": "2024-3-14",
+        "title": "Paint 'n' Sip",
+        "slots": 20,
+        "available": 10,
+        "price": 25,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg",
+        "description": "Unleash your inner artist at our Paint 'n' Sip Event! With a brush in one hand and a wine glass in the other, lose yourself in the joy of painting in a fun, supportive environment. Whether you’re a seasoned painter or a curious newbie, this event promises laughter, relaxation, and a chance to create something beautiful. Come for the paint, stay for the pinot, and leave with your own canvas masterpiece!"
+    },
+    {
+        "id": 6,
+        "date": "2024-4-2",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg",
+        "description": "Step into the world of textile art with our Rug Tufting Workshop! Armed with a tufting gun and an array of colorful yarns, you’ll transform a blank canvas into a vibrant rug that expresses your style. This hands-on workshop not only teaches you a new craft but also lets you take home a masterpiece that's both personal and practical. Perfect for decorating your space or as a heartfelt gift."
+    },
+    {
+        "id": 7,
+        "date": "2024-4-9",
+        "title": "Paint 'n' Sip",
+        "slots": 25,
+        "available": 10,
+        "price": 25,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg",
+        "description": "Unleash your inner artist at our Paint 'n' Sip Event! With a brush in one hand and a wine glass in the other, lose yourself in the joy of painting in a fun, supportive environment. Whether you’re a seasoned painter or a curious newbie, this event promises laughter, relaxation, and a chance to create something beautiful. Come for the paint, stay for the pinot, and leave with your own canvas masterpiece!"
+    },
+    {
+        "id": 8,
+        "date": "2024-4-16",
+        "title": "Rug Tufting",
+        "slots": 15,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg",
+        "description": "Step into the world of textile art with our Rug Tufting Workshop! Armed with a tufting gun and an array of colorful yarns, you’ll transform a blank canvas into a vibrant rug that expresses your style. This hands-on workshop not only teaches you a new craft but also lets you take home a masterpiece that's both personal and practical. Perfect for decorating your space or as a heartfelt gift."
+    },
+    {
+        "id": 9,
+        "date": "2024-5-14",
+        "title": "Paint 'n' Sip",
+        "slots": 20,
+        "available": 10,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg",
+        "description": "Unleash your inner artist at our Paint 'n' Sip Event! With a brush in one hand and a wine glass in the other, lose yourself in the joy of painting in a fun, supportive environment. Whether you’re a seasoned painter or a curious newbie, this event promises laughter, relaxation, and a chance to create something beautiful. Come for the paint, stay for the pinot, and leave with your own canvas masterpiece!"
+    },
+    {
+        "id": 10,
+        "date": "2024-3-14",
+        "title": "Paint 'n' Sip",
+        "slots": 12,
+        "available": 10,
+        "price": 25,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg",
+        "description": "Unleash your inner artist at our Paint 'n' Sip Event! With a brush in one hand and a wine glass in the other, lose yourself in the joy of painting in a fun, supportive environment. Whether you’re a seasoned painter or a curious newbie, this event promises laughter, relaxation, and a chance to create something beautiful. Come for the paint, stay for the pinot, and leave with your own canvas masterpiece!"
+    },
+    {
+        "id": 11,
+        "date": "2024-5-17",
+        "title": "Candle Making",
+        "slots": 12,
+        "available": 10,
+        "price": 45,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/candles.jpeg",
+        "description": "Illuminate your creativity at our Candle Making Workshop! Dive into the art of candle crafting and learn how to blend scents and wax to create candles that light up your rooms and soothe your soul. Each participant will design and pour their own candles, choosing from a variety of fragrances and colors. It’s the perfect way to add a touch of warmth to your home or to craft a thoughtful, handmade gift."
+    },
+    {
+        "id": 12,
+        "date": "2024-5-24",
+        "title": "Perfume Making",
+        "slots": 12,
+        "available": 10,
+        "price": 45,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/perfumes.jpeg",
+        "description": "Explore the enchanting world of fragrances at our Perfume Making Workshop. This immersive experience guides you through the delicate art of perfume creation. From floral to earthy notes, blend your own signature scent that captures your essence and style. Ideal for those who appreciate the subtle art of perfumery or anyone looking for a unique, personalized treasure."
+    },
+    {
+        "id": 13,
+        "date": "2024-6-5",
+        "title": "Rug Tufting",
+        "slots": 20,
+        "available": 20,
+        "price": 45,
+        "time": "6:15 - 8:00 PM",
+        "pic": "/rug_tuft.jpeg",
+        "description": "Dive into the creative world of textile design with our Rug Tufting Workshop! This session offers you the chance to learn how to use a tufting gun, creating your own unique, plush rug that can add personality and comfort to any room in your home. No previous experience needed, just bring your creativity and enthusiasm!"
+    },
+    {
+        "id": 14,
+        "date": "2024-6-12",
+        "title": "Paint 'n' Sip",
+        "slots": 20,
+        "available": 20,
+        "price": 25,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/paint-n-sip.jpeg",
+        "description": "Join us for an evening of art and relaxation at our Paint 'n' Sip event. Sip your favorite wine and let your artistic flair flow on canvas. This event is perfect for those looking to unwind, socialize, and create memorable art. No painting skills? No problem! Our guided session will help you find your inner artist."
+    },
+    {
+        "id": 15,
+        "date": "2024-6-19",
+        "title": "Candle Making",
+        "slots": 15,
+        "available": 15,
+        "price": 45,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/candles.jpeg",
+        "description": "Light up your evening with our Candle Making Workshop. Learn the basics of candle making, including scent and color blending. This hands-on workshop is perfect for those who enjoy crafting and want to create something special and aromatic that enhances any room’s atmosphere."
+    },
+    {
+        "id": 16,
+        "date": "2024-6-26",
+        "title": "Perfume Making",
+        "slots": 15,
+        "available": 15,
+        "price": 45,
+        "time": "6:00 - 8:00 PM",
+        "pic": "/perfumes.jpeg",
+        "description": "Delve into the art of perfume creation at our Perfume Making Workshop. Tailor your personal fragrance from a variety of essential oils and aromatic compounds. This workshop offers a unique opportunity to learn about the intricacies of perfumery and create a scent that’s truly your own."
+    }
+]

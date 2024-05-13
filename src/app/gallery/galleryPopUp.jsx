@@ -65,6 +65,7 @@ const GalleryModal = ({ kit, visible, onClose }) => {
                         <React.Fragment>
                             {/* Reduce the text size shown on larger screens, hidden on smaller */}
                             <div className="flex flex-col my-auto  items-center phone:hidden phone_land:hidden tablet:hidden text-[150%]">
+                                {console.log(kit.pic)}
                                 <Image
                                     src={kit.pic}
                                     alt={kit.title}
