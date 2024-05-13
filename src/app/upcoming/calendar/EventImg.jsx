@@ -28,7 +28,7 @@ const EventImage = ({ date, events }) => {
         
         filteredEvents.forEach((event, index) => {
             if (event.date === date) {
-                // console.log("event title", event.pic.name);
+                console.log("event title", event.pic.name);
                 switch (event.pic.name) {
                     case "Rug Tufting":
                         images.push(
@@ -36,6 +36,7 @@ const EventImage = ({ date, events }) => {
                                 key={`${date}-${index}`}
                                 className="event-image-item flex flex-col items-center mt-[5%] text-sm"
                             >
+                                {console.log("event pic", event.pic.url)}
                                 <Image
                                     src={event.pic.url}
                                     alt="Rug Tufting"

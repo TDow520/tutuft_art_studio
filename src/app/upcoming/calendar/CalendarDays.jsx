@@ -34,13 +34,16 @@ const Day = ({ date, day }) => {
 
         if (month.length < 2) month = "0" + month;
         if (day.length < 2) day = "0" + day;
-
+        // console.log("Formatted date:", [year, month, day].join("-"));
         return [year, month, day].join("-");
     }
     // Filter the events for the current day
     const eventsForDay = events.filter((event) => {
         // console.log("Event date:", event.date);
-        return event.date == formatDate(date);
+        // console.log("Formatted date:", formatDate(date));
+
+        return (
+            event.date == formatDate(date));
     });
 
     // console.log("Events for day:", eventsForDay);
