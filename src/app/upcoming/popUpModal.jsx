@@ -7,6 +7,8 @@ import { useCart } from "../cart/CartContext";
 const EventModal = ({ event, visible, onClose }) => {
     const [popUpVisible, setPopUpVisible] = useState(visible);
     const [addedToCart, setAddedToCart] = useState(false);
+    const [slots, setSlots] = useState(event.available);
+    const [soldOut, setSoldOut] = useState(false);
 
     useEffect(() => {
         setPopUpVisible(visible);
@@ -21,8 +23,7 @@ const EventModal = ({ event, visible, onClose }) => {
                 setAddedToCart(false);
             }, 3000); // 1000 milliseconds = 1 second
         }
-    
-    })
+    });
 
     // Destructure the addToCart function from useCart
     const { addToCart } = useCart();
@@ -40,14 +41,55 @@ const EventModal = ({ event, visible, onClose }) => {
     };
 
     // Directly define the function to add to cart
-    const handleAddToCart = () => {
-        // console.log(event);
-        addToCart(event); // Add the event to the cart
+    const handleAddToCart = async () => {
+        //fetch the current slots from the database
+        try {
+            const response = await fetch(
+                `/api/events/getslots?event_id=${event.event_id}`
+            );
 
-        setAddedToCart(true); // Set added to cart to true
-        console.log("Event added to cart");
+            // parse the data into a json object
+            const data = await response.json();
+
+            // verify the response and if so set the slots
+            if (response.ok) {
+                console.log("Slots fetched successfully:", data);
+                setSlots(data.available);
+
+                // check if the slots are greater than 0
+                if (data.available > 0) {
+                    setSoldOut(false); // Set sold out to false
+
+                    // console.log(event);
+                    addToCart(event); // Add the event to the cart
+
+                    setAddedToCart(true); // Set added to cart to true
+                    console.log("Event added to cart");
+
+                    // recheck the slots in the database
+                    const response = await fetch(
+                        `/api/events/getslots?event_id=${event.event_id}`
+                    );
+                    const data = await response.json();
+                    if (response.ok) {
+                        console.log(
+                            "Slots recheck fetched successfully:",
+                            data
+                        );
+                        setSlots(data.available);
+                    }
+                } else {
+                    console.log("Event is sold out");
+                    setSoldOut(true); // Set sold out to true
+                }
+
+            } else {
+                console.error("Failed to fetch slots:", data.error);
+            }
+        } catch (err) {
+            console.error("Error fetching slots:", err);
+        }
     };
-    // console.log("time length", event.start.length);
 
     // convert event.start and end to 12 hour format
     const convertTime = (time) => {
@@ -72,7 +114,6 @@ const EventModal = ({ event, visible, onClose }) => {
         return time;
     };
 
-
     if (popUpVisible) {
         return (
             <div
@@ -81,7 +122,7 @@ const EventModal = ({ event, visible, onClose }) => {
                 onClick={backdropClick}
             >
                 <div className="flex flex-col items-center bg-emerald-600 p-2 phone:w-[75%] phone_land:w-[75%] w-[45%] h-[65%] overflow-y-auto rounded-xl text-gold-600 font-bold text-center">
-                    {/*Condidtaionally render the added to cart message*/}
+                    {/* Conditionally render the added to cart message */}
                     {addedToCart ? (
                         <React.Fragment>
                             {/* Reduce the text size shown on larger screens, hidden on smaller */}
@@ -101,7 +142,7 @@ const EventModal = ({ event, visible, onClose }) => {
                                 </p>
                                 <p>has been added to Cart</p>
                             </div>
-                            {/* Reduce the text size shown on larger screens, hidden on smaller  */}
+                            {/* Reduce the text size shown on larger screens, hidden on smaller */}
                             <div className="flex flex-col my-auto items-center laptop:hidden desktop:hidden">
                                 <Image
                                     src={event.pic.url}
@@ -119,6 +160,10 @@ const EventModal = ({ event, visible, onClose }) => {
                                 <p>has been added to Cart</p>
                             </div>
                         </React.Fragment>
+                    ) : soldOut ? ( // Conditionally render sold out message
+                        <div className="flex flex-col my-auto items-center">
+                            <p className="text-red-700 phone:text-2xl phone_land:text-3xl text-4xl">Event is Sold Out</p>
+                        </div>
                     ) : (
                         <div className="w-full h-full overflow-scroll no-scrollbar">
                             <button
@@ -152,28 +197,29 @@ const EventModal = ({ event, visible, onClose }) => {
                                 <p className="flex mb-2">Age: 18+</p>
                                 <div className="flex flex-col mb-4">
                                     <div className="flex mr-2">
-                                            Available Slots: {event.available}
-                                            {console.log("event available", event.available)}
+                                        Available Slots: {slots}{" "}
+                                        {/* Use the slots state */}
+                                        {console.log("event available", slots)}
                                     </div>
                                 </div>
                             </div>
                             <section className="flex flex-row justify-center">
-                                {event.available > 0 && (
-                                        <>
-                                            <button
-                                                onClick={handleAddToCart}
-                                                className="text-black text-[150%] bg-slate-200 rounded-md hover:bg-slate-300 hover:drop-shadow-2xl w-[25%] justify-center tablet:hidden laptop:hidden desktop:hidden"
-                                            >
-                                                +
-                                            </button>
-                                            <button
-                                                className="phone:hidden phone_land:hidden justify-center mt-4 bg-emerald-50 text-emerald-700 p-2 rounded-md w-[150px] flex hover:bg-slate-300 hover:drop-shadow-2xl"
-                                                onClick={handleAddToCart}
-                                            >
-                                                Add to Cart
-                                            </button>
-                                        </>
-                                    )}
+                                {slots > 0 && ( // Use slots state to check availability
+                                    <>
+                                        <button
+                                            onClick={handleAddToCart}
+                                            className="text-black text-[150%] bg-slate-200 rounded-md hover:bg-slate-300 hover:drop-shadow-2xl w-[25%] justify-center tablet:hidden laptop:hidden desktop:hidden"
+                                        >
+                                            +
+                                        </button>
+                                        <button
+                                            className="phone:hidden phone_land:hidden justify-center mt-4 bg-emerald-50 text-emerald-700 p-2 rounded-md w-[150px] flex hover:bg-slate-300 hover:drop-shadow-2xl"
+                                            onClick={handleAddToCart}
+                                        >
+                                            Add to Cart
+                                        </button>
+                                    </>
+                                )}
                             </section>
                         </div>
                     )}

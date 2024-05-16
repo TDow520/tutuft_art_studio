@@ -5,9 +5,7 @@ export default async function handler(req, res) {
         // console.log("Request body:", req.body);
 
         const { id, available } = req.body;
-        // console.log("Body: ", req.body);
-        // console.log("Event ID:", id);
-        
+
         // update the events table
         const { data, error } = await supabase
             .from("events")
@@ -17,8 +15,7 @@ export default async function handler(req, res) {
         if (error) {
             return res.status(500).json({ error: error.message });
         }
-        // console.log("Updated slots in the database:", data);
-
+        
         // return a success message if all tables updated along with the slots updated
         return res
             .status(200)

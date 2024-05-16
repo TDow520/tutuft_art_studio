@@ -14,7 +14,7 @@ const Cart = () => {
         0
     );
     const tax = subtotal * 0.08; // Calculating an 8% tax on the subtotal
-    const total = subtotal + tax; // Total cost including tax
+    const total = subtotal + tax-tax; // Total cost including tax
     
     console.log(items)
     return (
@@ -136,10 +136,10 @@ const Cart = () => {
                             <td className="p-4">Subtotal</td>
                             <td className="p-4">${subtotal.toFixed(2)}</td>
                         </tr>
-                        <tr className="flex justify-between">
+                        {/* <tr className="flex justify-between">
                             <td className="p-4">Tax</td>
                             <td className="p-4">${tax.toFixed(2)}</td>
-                        </tr>
+                        </tr> */}
                         <tr className="flex justify-between">
                             <td className="p-4">Total</td>
                             <td className="p-4">${total.toFixed(2)}</td>

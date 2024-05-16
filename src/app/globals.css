@@ -42,10 +42,14 @@ body {
   height: 30vh;
 }
 
-.gradient-text{
-  background-image: linear-gradient(180deg, rgb(131, 131, 43), rgb(109, 251, 113) );
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-backgroundd-clip: text;
 
+.gradient_bg{
+  background-image: linear-gradient(180deg,  rgb(147, 147, 147), rgb(0, 0, 0));
+}
+
+.text-container {
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for text containers */
+  padding: 10px;
+  border-radius: 5px;
+  color: white; /* White text for contrast */
 }
