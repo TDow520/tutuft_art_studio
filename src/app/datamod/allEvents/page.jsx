@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function EventMod() {
     const [events, setEvents] = useState([]);
@@ -96,10 +97,11 @@ export default function EventMod() {
                             <p className="ml-3 text-left w-[50%]">
                                 {event.description}
                             </p>
-                            <img
+                            <Image
                                 src={event.pic.url}
                                 alt={event.pic.name}
                                 width={175}
+                                height={175}
                             />
                         </div>
                         <div className="w-full mb-3">

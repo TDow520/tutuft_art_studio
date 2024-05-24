@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 // this is a the form to insert a new pic into the gallery bucket in supabase
 // This will also be a component that will be able to show the images in the gallery and allow the user to delete them
@@ -30,7 +31,7 @@ export default function GalleryMod() {
         fetchImages();
     }, []);
 
-    console.log("Images:", images);
+    // console.log("Images:", images);
 
     // when upload is clicked the image will be uplaoded to the bucket
 
@@ -43,9 +44,9 @@ export default function GalleryMod() {
                 ) : (
                     <div className="flex flew-wrap w-full p-5">
                         {images.map((image, index) => (
-                            <div className="w-1/6 h-[250px]">
-                                <div className="flex flex-col mx-2" key={index}>
-                                    <img src={image.url} alt={image.name} className="h-[200px]" />
+                            <div className="w-1/6 h-[250px]"  key={index}>
+                                <div className="flex flex-col mx-2">
+                                    <Image src={image.url} alt={image.name} className="h-[200px]"  width={200} height={200}/>
                                 </div>
                                 <button className="bg-slate-800/60 w-[80%] m-2 rounded-md">Delete</button>
                             </div>
