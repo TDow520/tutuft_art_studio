@@ -2,11 +2,11 @@ import supabase from "@/app/supabaseClient";
 
 export default async function handler(req, res) { 
     if (req.method === 'POST') {
-        const { event_name, event_date, event_time, event_slot, event_price } = req.body;
+        const { name, url } = req.body;
         
-        const { data, error } = await supabase 
+        const { data, error } = await supabase
             .from('event')
-            .insert([{ event_name, event_date, event_time, event_slot, event_price }]);
+            .insert([{ name, url }]);
         
         if (error) {
             return res.status(500).json({ error: error.message });

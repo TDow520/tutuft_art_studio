@@ -53,3 +53,7 @@ body {
   border-radius: 5px;
   color: white; /* White text for contrast */
 }
+
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, rgba(147, 147, 147), rgba(0,0, 1));
+}

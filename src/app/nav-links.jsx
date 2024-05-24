@@ -7,7 +7,7 @@ import Image from "next/image"; // Next.js image component
 import { AiOutlineShoppingCart, AiOutlineClose } from "react-icons/ai"; // Shopping cart and close icons
 import { usePathname } from "next/navigation"; // Hook for current pathname
 import { useState } from "react"; // useState hook from React
-
+import { useCart } from "./cart/CartContext"; // Importing useCart custom hook from the CartContext
 // Navigation links data
 const links = [
     { name: "Home", href: "/" },
@@ -23,8 +23,19 @@ export default function NavLinks() {
     const currentPath = usePathname();
     const [showMenu, setShowMenu] = useState(false);
 
+    const { items } = useCart();
+
     const toggleMenu = () => {
         setShowMenu(!showMenu);
+    };
+
+    // funciotn to count the number of items in the cart
+    const countItems = () => {
+        let count = 0;
+        items.forEach((item) => {
+            count += item.quantity;
+        });
+        return count;
     };
 
     const backdropClick = (e) => {
@@ -68,12 +79,12 @@ export default function NavLinks() {
                             aria-label="Open shopping cart"
                             className="flex text-4xl laptop:hidden desktop:hidden"
                         />
+                        <div className="w-5 -mt-[30%] ml-[60%] text-sm bg-red-500  text-white rounded-lg p-1 laptop:hidden desktop:hidden">
+                            {countItems()}
+                        </div>
                     </Link>
 
-                    <HamburgerIcon
-                        onClick={toggleMenu}
-                        isOpen={showMenu}
-                    />
+                    <HamburgerIcon onClick={toggleMenu} isOpen={showMenu} />
                 </section>
 
                 {/* This is the side menu section */}
@@ -114,6 +125,9 @@ export default function NavLinks() {
                         aria-label="Open shopping cart"
                         className="flex mx-auto my-6 text-5xl"
                     />
+                    <div className="w-5 -mt-[30%] ml-[60%] text-xl bg-red-500  text-white rounded-xl p-1">
+                        {countItems()}
+                    </div>
                 </Link>
             </div>
         </div>

@@ -2,8 +2,26 @@
 
 import React from "react";
 import Image from "next/image";
+import { useState } from "react";
+// import supabase from "@/app/supabaseClient";
 
 export default function PicLib() {
+    const [images, setImages] = useState([]);
+
+    // fetch the images from the database storage 
+    // const fethcImg = async () => { 
+    //     const { data, error } = await supabase
+    //         .storage
+    //         .from('events-imgs')
+    //         .list("/", {limit: 10, offset: 0, sortBy: {column: "name", order: "asc"}});
+    //    if (error) {
+    //        console.log(error);
+    //    } else {
+    //        setImages(data);
+    //    }
+    // }
+
+
     return (
         <div className="h-full w-full border ">
             <h1>Gallery</h1>

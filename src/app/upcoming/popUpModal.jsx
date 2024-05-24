@@ -134,6 +134,7 @@ const EventModal = ({ event, visible, onClose }) => {
                                     height={50}
                                     className="align-middle"
                                 />
+                                {console.log("event pic", event.pic.url)}
                                 <p className=" my-4">{event.pic.name}</p>
                                 <p className="mb-4">
                                     on {event.date} from{" "}
