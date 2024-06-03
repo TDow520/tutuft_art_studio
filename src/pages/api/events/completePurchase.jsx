@@ -1,5 +1,5 @@
 import { Client, Environment } from "square";
-import sendReceipt from "./sendReceipt"; // Import the sendReceipt function
+import sendReceipt from "../sendReceipt"; // Import the sendReceipt function
 import supabase from "@/app/supabaseClient";
 
 const client = new Client({
