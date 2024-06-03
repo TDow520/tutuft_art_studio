@@ -24,7 +24,7 @@ const RootLayout = ({ children }) => {
         <CartProvider>
             <html lang="en">
                 <body
-                    className={` ${inter.className} bg-gradient-to-b to-emerald-950 from-emerald-100`}
+                    className={`bg-gradient-to-b to-emerald-950 from-emerald-100`}
                 >
                     <div className="flex flex-col items-center text-center">
                         <header className="w-[95%] z-50 h-[2.5%] ">

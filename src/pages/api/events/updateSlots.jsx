@@ -6,21 +6,17 @@ export default async function handler(req, res) {
 
         const { id, available } = req.body;
 
-        // update the events table
-        const { data, error } = await supabase
-            .from("events")
-            .update({ available })
-            .match({ event_id: id });
+        const { error } = await supabase.rpc("update_event_slots", {
+            _event_id: id,
+            new_available: available
+        });
 
         if (error) {
             return res.status(500).json({ error: error.message });
         }
-        
-        // return a success message if all tables updated along with the slots updated
-        return res
-            .status(200)
-            .json({ message: "Slots updated successfully", data });
+
+        return res.status(200).json({ message: "Slots updated successfully" });
     } else {
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-}
+};

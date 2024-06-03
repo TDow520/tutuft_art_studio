@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import Image from "next/image";
 import { useCart } from "../cart/CartContext";
 
@@ -24,6 +24,25 @@ const EventModal = ({ event, visible, onClose }) => {
             }, 3000); // 1000 milliseconds = 1 second
         }
     });
+
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            try {
+                const response = await fetch(
+                    `/api/events/getslots?event_id=${event.event_id}`
+                );
+                const data = await response.json();
+
+                if (response.ok) {
+                    setSlots(data.available);
+                }
+            } catch (error) {
+                console.error("Error fetching slots:", error);
+            }
+        }, 2000); // Check every 2 seconds
+
+        return () => clearInterval(interval);
+    }, [event.event_id]);
 
     // Destructure the addToCart function from useCart
     const { addToCart } = useCart();
@@ -50,41 +69,26 @@ const EventModal = ({ event, visible, onClose }) => {
 
             // parse the data into a json object
             const data = await response.json();
+            console.log("This is the data:", data);
 
             // verify the response and if so set the slots
-            if (response.ok) {
-                console.log("Slots fetched successfully:", data);
-                setSlots(data.available);
+            if (response.ok && data.available > 0) {
+                setSoldOut(false); // Set sold out to false
+                addToCart(event, async (event_id) => {
+                    setAddedToCart(true);
 
-                // check if the slots are greater than 0
-                if (data.available > 0) {
-                    setSoldOut(false); // Set sold out to false
-
-                    // console.log(event);
-                    addToCart(event); // Add the event to the cart
-
-                    setAddedToCart(true); // Set added to cart to true
-                    console.log("Event added to cart");
-
-                    // recheck the slots in the database
-                    const response = await fetch(
+                    // Set sold out to false
+                    const recheckResponse = await fetch(
                         `/api/events/getslots?event_id=${event.event_id}`
                     );
-                    const data = await response.json();
-                    if (response.ok) {
-                        console.log(
-                            "Slots recheck fetched successfully:",
-                            data
-                        );
-                        setSlots(data.available);
+                    const recheckData = await recheckResponse.json();
+                    if (recheckResponse.ok) {
+                        setSlots(recheckData.available);
                     }
-                } else {
-                    console.log("Event is sold out");
-                    setSoldOut(true); // Set sold out to true
-                }
-
+                });
             } else {
-                console.error("Failed to fetch slots:", data.error);
+                console.log("Event is sold out");
+                setSoldOut(true); // Set sold out to true
             }
         } catch (err) {
             console.error("Error fetching slots:", err);
@@ -134,7 +138,7 @@ const EventModal = ({ event, visible, onClose }) => {
                                     height={50}
                                     className="align-middle"
                                 />
-                                {console.log("event pic", event.pic.url)}
+                                {/* {console.log("event pic", event.pic.url)} */}
                                 <p className=" my-4">{event.pic.name}</p>
                                 <p className="mb-4">
                                     on {event.date} from{" "}
@@ -163,7 +167,9 @@ const EventModal = ({ event, visible, onClose }) => {
                         </React.Fragment>
                     ) : soldOut ? ( // Conditionally render sold out message
                         <div className="flex flex-col my-auto items-center">
-                            <p className="text-red-700 phone:text-2xl phone_land:text-3xl text-4xl">Event is Sold Out</p>
+                            <p className="text-red-700 phone:text-2xl phone_land:text-3xl text-4xl">
+                                Event is Sold Out
+                            </p>
                         </div>
                     ) : (
                         <div className="w-full h-full overflow-scroll no-scrollbar">
@@ -200,7 +206,7 @@ const EventModal = ({ event, visible, onClose }) => {
                                     <div className="flex mr-2">
                                         Available Slots: {slots}{" "}
                                         {/* Use the slots state */}
-                                        {console.log("event available", slots)}
+                                        {/* {console.log("event available", slots)} */}
                                     </div>
                                 </div>
                             </div>

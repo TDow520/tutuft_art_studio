@@ -31,26 +31,23 @@ export const CartProvider = ({ children }) => {
     // Function to update slots in the database, returns a promise.
     const updateSlots = (id, available) => {
         return new Promise((resolve, reject) => {
+            console.log("Updating slots for event:", id, "with available:", available);
+
             if (available === null) {
-                console.error(
-                    "Attempted to update slots with invalid value:",
-                    available
-                );
+                console.error("Attempted to update slots with invalid value:", available);
                 reject("Invalid available value");
                 return;
             }
 
             // PATCH request to update the availability of slots.
-            fetch("api/events/updateSlots", {
+            fetch("/api/events/updateSlots", {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id, available })
             })
                 .then((response) => {
                     if (!response.ok) {
-                        throw new Error(
-                            "Failed to update slots: " + response.statusText
-                        );
+                        throw new Error("Failed to update slots: " + response.statusText);
                     }
                     return response.json();
                 })
@@ -90,15 +87,14 @@ export const CartProvider = ({ children }) => {
                         quantity: existingItem.quantity + 1,
                         available: Math.max(0, existingItem.available - 1)
                     };
-                    updateSlots(event.event_id, existingItem.available - 1)
-                        .then(() => {
-                            if (onSuccessAdd) {
-                                onSuccessAdd(event.event_id);
-                            }
-                        })
-                        .catch((error) =>
-                            console.error("Update failed", error)
-                        );
+
+                    updateSlots(event.event_id, updatedItems.available)
+                    .then(() => {
+                        if (onSuccessAdd) {
+                            onSuccessAdd(event.event_id);
+                        }
+                    })
+                    .catch((error) => console.error("Update failed", error));
                 }
 
                 return updatedItems;
@@ -147,10 +143,10 @@ export const CartProvider = ({ children }) => {
                 updatedItems = prevItems.map((item) =>
                     item.event_id === existingItem.event_id
                         ? {
-                              ...item,
-                              quantity: item.quantity - 1,
-                              available: item.available + 1 // Ensure available slots are increased
-                          }
+                                ...item,
+                                quantity: item.quantity - 1,
+                                available: item.available + 1 // Ensure available slots are increased
+                        }
                         : item
                 );
             }

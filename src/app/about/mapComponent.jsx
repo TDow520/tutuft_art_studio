@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import "leaflet/dist/leaflet.css";
 
 const DynamicMapContainer = dynamic(
     () => import("react-leaflet").then((mod) => mod.MapContainer),
@@ -19,7 +20,6 @@ const MapComponent = () => {
         return null; // Render nothing on the server side
     }
 
-    // Conditionally import leaflet and its components only on the client side
     const L = require("leaflet");
     const { TileLayer, Marker, Popup } = require("react-leaflet");
 

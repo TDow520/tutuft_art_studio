@@ -1,22 +1,53 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "./CartContext"; // Importing useCart custom hook from the CartContext
 import Image from "next/image";
+import UserModal from "./usermodal/userModal";
 
 const Cart = () => {
-    // Accessing the cart items and functions for manipulating the cart
     const { items, addToCart, removeFromCart } = useCart();
+    const [isOpened, setIsOpened] = useState(false);
 
-    // Calculate the subtotal by summing up the product of each item's price and quantity
     const subtotal = items.reduce(
         (total, item) => total + item.price * item.quantity,
         0
     );
-    const tax = subtotal * 0.08; // Calculating an 8% tax on the subtotal
-    const total = subtotal + tax-tax; // Total cost including tax
-    
-    console.log(items)
+    const tax = subtotal * 0.08;
+    const total = subtotal + tax;
+
+    const handleCheckout = async ({ fName, lName, email, phone, nonce }) => {
+        try {
+            const response = await fetch("/api/events/completePurchase", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    amount: total,
+                    email,
+                    fName,
+                    lName,
+                    phone,
+                    nonce,
+                    cartItems: items
+                })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                console.log("Purchase completed successfully:", result.receipt);
+                items.forEach((item) => removeFromCart(item)); // Clear the cart after successful purchase
+            } else {
+                console.error("Error completing purchase:", result.error);
+            }
+            setIsOpened(false);
+        } catch (error) {
+            console.error("Error completing purchase:", error.message);
+        }
+    };
+
     return (
         <div className="flex flex-col items-center my-4 text-yellow-200 bg-opacity-40 w-full">
             <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
@@ -29,7 +60,6 @@ const Cart = () => {
                                 key={item.id}
                                 className="flex flex-col bg-white bg-opacity-20 w-full shadow-lg p-4 mb-4 rounded-lg"
                             >
-                                {/* Item title and image section */}
                                 <section className="flex flex-col justify-between w-full">
                                     <h3 className="text-xl font-semibold mx-auto w-[90%]">
                                         {item.pic.name}
@@ -42,10 +72,7 @@ const Cart = () => {
                                         className="w-[90%] mx-auto"
                                     />
                                 </section>
-
-                                {/* Item details and cart manipulation section */}
                                 <section className="flex flex-col w-full my-auto">
-                                    {/* only display the date if there is data in the field */}
                                     {item.date && (
                                         <p className="p-[2%]">
                                             Date: {item.date}
@@ -82,7 +109,6 @@ const Cart = () => {
                                 key={item.id}
                                 className="flex bg-white bg-opacity-20 w-full shadow-lg p-4 mb-4 rounded-lg"
                             >
-                                {/* Item title and image section */}
                                 <section className="flex justify-start w-[50%]">
                                     <h3 className="text-xl font-semibold justify-left my-auto mx-[2%] w-[45%]">
                                         {item.pic.name}
@@ -95,8 +121,6 @@ const Cart = () => {
                                         className="w-[25%] mx-auto"
                                     />
                                 </section>
-
-                                {/* Item details and cart manipulation section */}
                                 <section className="flex flex-col w-[50%] my-auto">
                                     <p className="p-[2%]">Date: {item.date}</p>
                                     <p className="p-[2%]">
@@ -136,20 +160,28 @@ const Cart = () => {
                             <td className="p-4">Subtotal</td>
                             <td className="p-4">${subtotal.toFixed(2)}</td>
                         </tr>
-                        {/* <tr className="flex justify-between">
+                        <tr className="flex justify-between">
                             <td className="p-4">Tax</td>
                             <td className="p-4">${tax.toFixed(2)}</td>
-                        </tr> */}
+                        </tr>
                         <tr className="flex justify-between">
                             <td className="p-4">Total</td>
                             <td className="p-4">${total.toFixed(2)}</td>
                         </tr>
                     </tbody>
                 </table>
-                <button className="bg-emerald-500 text-yellow-400 rounded-md px-4 py-2 mt-4 mb-4 w-[20%] laptop:w-[20%] desktop:w-[20%] phone:w-[75%] phone_land:w-[75%] tablet:w-[75%]">
+                <button
+                    onClick={() => setIsOpened(true)}
+                    className="bg-emerald-500 text-yellow-400 rounded-md px-4 py-2 mt-4 mb-4 w-[20%] laptop:w-[20%] desktop:w-[20%] phone:w-[75%] phone_land:w-[75%] tablet:w-[75%]"
+                >
                     Checkout
                 </button>
             </div>
+            <UserModal
+                isOpen={isOpened}
+                onClose={() => setIsOpened(false)}
+                handlePayment={handleCheckout}
+            />
         </div>
     );
 };
