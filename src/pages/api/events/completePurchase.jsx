@@ -3,9 +3,19 @@ import sendReceipt from "../sendReceipt"; // Import the sendReceipt function
 import supabase from "@/app/supabaseClient";
 
 const client = new Client({
-    environment: 'sandbox', // or Environment.Production
+    environment: 'sandbox', 
     accessToken: process.env.SQ_ACCESS_TOKEN
 });
+
+const convertBigIntToString = (obj) => {
+    if (typeof obj === "bigint") {
+        return obj.toString();
+    } else if (typeof obj === "object") {
+        for (const key in obj) {
+            obj[key] = convertBigIntToString(obj[key]);
+        }
+    }
+};
 
 export default async function handler(req, res) {
     if (req.method === "POST") {
@@ -20,7 +30,7 @@ export default async function handler(req, res) {
             const response = await paymentsApi.createPayment({
                 sourceId: nonce,
                 amountMoney: {
-                    amount: amount * 100, // convert to cents
+                    amount: Math.round(amount * 100), // Convert dollars to cents
                     currency: "USD"
                 },
                 idempotencyKey: new Date().toISOString() // unique key to prevent duplicate payments
@@ -33,6 +43,9 @@ export default async function handler(req, res) {
             // Successful payment
             const receipt = response.result;
 
+            // Convert any BigInt values to strings
+            const receipt_string = convertBigIntToString(receipt);
+
             // Save the order to the database
             const { data, error } = await supabase
                 .from("receipts")
@@ -40,9 +53,8 @@ export default async function handler(req, res) {
                     {
                         email,
                         customer_name,
-                        receipt: JSON.stringify(receipt),
                         cart_items: JSON.stringify(cartItems),
-                        total: amount
+                        total_amount: amount
                     }
                 ]);
 
@@ -55,9 +67,7 @@ export default async function handler(req, res) {
                 {
                     name: customer_name,
                     email,
-                    message: `Thank you for your purchase! Here is your receipt: ${JSON.stringify(
-                        receipt
-                    )}`
+                    message: `Thank you for your purchase! Here is your receipt: ${JSON.stringify(receipt_string, null, 2)}`
                 },
                 res
             );

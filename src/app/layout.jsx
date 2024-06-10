@@ -27,7 +27,7 @@ const RootLayout = ({ children }) => {
                     className={`bg-gradient-to-b to-emerald-950 from-emerald-100`}
                 >
                     <div className="flex flex-col items-center text-center">
-                        <header className="w-[95%] z-50 h-[2.5%] ">
+                        <header className="w-[95%] z-0 h-[2.5%] ">
                             <NavBanner />
                         </header>
                         {/* This is the main container */}

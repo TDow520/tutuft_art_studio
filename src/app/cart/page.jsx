@@ -9,6 +9,7 @@ const Cart = () => {
     const { items, addToCart, removeFromCart } = useCart();
     const [isOpened, setIsOpened] = useState(false);
 
+    // Calculate the subtotal, tax, and total
     const subtotal = items.reduce(
         (total, item) => total + item.price * item.quantity,
         0
@@ -16,6 +17,7 @@ const Cart = () => {
     const tax = subtotal * 0.08;
     const total = subtotal + tax;
 
+    // Handle the checkout process
     const handleCheckout = async ({ fName, lName, email, phone, nonce }) => {
         try {
             const response = await fetch("/api/events/completePurchase", {
@@ -170,17 +172,21 @@ const Cart = () => {
                         </tr>
                     </tbody>
                 </table>
+                {/* if the cart is empty or items is = [] disable checkout button and turn it gray*/}
                 <button
                     onClick={() => setIsOpened(true)}
                     className="bg-emerald-500 text-yellow-400 rounded-md px-4 py-2 mt-4 mb-4 w-[20%] laptop:w-[20%] desktop:w-[20%] phone:w-[75%] phone_land:w-[75%] tablet:w-[75%]"
+                    disabled={items.length === 0}
                 >
                     Checkout
                 </button>
             </div>
+
             <UserModal
                 isOpen={isOpened}
                 onClose={() => setIsOpened(false)}
                 handlePayment={handleCheckout}
+                total={total}
             />
         </div>
     );

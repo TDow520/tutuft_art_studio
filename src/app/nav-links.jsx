@@ -46,7 +46,7 @@ export default function NavLinks() {
     };
 
     return (
-        <div className="flex text-emerald-600 mt-[1%] z-[10] justify-between phone:gap-[25%]">
+        <div className="flex text-emerald-600 mt-[1%] z-[50] justify-between phone:gap-[25%]">
             <div className=" mr-[5%] gap-5 bg-slate-200 rounded-xl justify-start">
                 <Link href="/">
                     <Image

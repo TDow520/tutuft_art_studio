@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
-export default async function sendReceipt(req, res) {
-    const { name, email, message } = req.body;
+export default async function sendReceipt(body) {
+    const { name, email, message } = body;
 
     const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
@@ -24,8 +24,9 @@ export default async function sendReceipt(req, res) {
 
     try {
         await transporter.sendMail(mailOptions);
-        res.status(200).json({ message: "Email sent successfully" });
+        console.log("Email sent successfully");
     } catch (error) {
-        res.status(500).json({ error });
+        console.error("Error sending email:", error.message);
+        
     }
 }
